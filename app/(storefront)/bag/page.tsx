@@ -37,7 +37,6 @@ const cartItems: Array<newcart> = cart?.items?.map((item) => ({
   imageString: item.imageString ,
   name: item.name,
   color: item.color,
-  size: item.size,
   discountprice: item.discountprice,
   quantity: item.quantity,
 })) || [];
