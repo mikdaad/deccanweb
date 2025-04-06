@@ -56,7 +56,7 @@ export default async function WishlistRoute() {
                 <div className="space-y-3">
                 <p>{item.name}</p>
                 <p className="font-thin">selected color: {item.color}</p>
-                <p className="font-thin">selected size: {item.size}</p>
+                <p className="font-thin">selected quantity: {item.quantity}</p>
                 </div>
                 <div className="flex flex-col h-full justify-between">
                   <p>₹{item.originalprice}</p>
