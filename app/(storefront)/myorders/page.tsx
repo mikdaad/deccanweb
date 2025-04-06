@@ -112,7 +112,7 @@ export default async function OrdersPage() {
                 {item.itemcolor}
                 </TableCell>
                 <TableCell className="text-right text-sm">
-                {item.itemsize}
+                {item.itemquantity}
                 </TableCell>
             
             
