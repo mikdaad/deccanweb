@@ -25,7 +25,6 @@ interface ProductCardProps {
     discountprice: number;
     images: string[];
     stars: number;
-    status: string;
   };
   className?: string;
 }

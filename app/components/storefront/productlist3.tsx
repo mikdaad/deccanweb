@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { ProductCard } from "../buildercomponents/home/productcard2";
-import { Gender, Category, Status } from "@prisma/client";
+import { Subcategory, Category } from "@prisma/client";
 import { InfiniteSlider } from "../ui/infiniteslider";
 
 // Define Product Type (Based on Prisma Model)
@@ -17,18 +17,16 @@ interface Product {
   isFeatured: boolean;
   stars: number;
   reviews: number;
-  status: string;
   createdAt: Date;
 }
 
 // Props Interface for the Component
 interface ProductListProps {
-  gender?: Gender;
+  subcategory?: Subcategory;
   category?: Category;
-  status?: Status;
 }
 
-export default function ProductList3({ gender, category, status }: ProductListProps) {
+export default function ProductList3({ subcategory, category }: ProductListProps) {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -37,9 +35,9 @@ export default function ProductList3({ gender, category, status }: ProductListPr
       try {
         // Build query parameters dynamically
         const params = new URLSearchParams({
-          ...(gender && { gender }),
+          ...(subcategory && { subcategory }),
           ...(category && { category }),
-          ...(status && { status }),
+        
         });
 
         const response = await fetch(`/api/products?${params.toString()}`, {
@@ -72,7 +70,7 @@ export default function ProductList3({ gender, category, status }: ProductListPr
     }
 
     fetchProducts();
-  }, [gender, category, status]);
+  }, [subcategory, category]);
 
   return (
     <div className="">

@@ -19,9 +19,8 @@ interface Product {
   discountprice: number;
   images: string[];
   category: Category;
-  isFeatured: boolean;
+  ispremium: boolean;
   stars: number | { toNumber: () => number }; // Handle possible Prisma Decimal
-  status: string;
   createdAt: Date;
 }
 

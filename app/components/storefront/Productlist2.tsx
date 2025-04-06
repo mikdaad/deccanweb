@@ -97,7 +97,7 @@ export default function ProductList({ subcategory, category }: ProductListProps)
               images: product.images,
               originalprice: product.originalprice,
               stars: product.stars,
-              status: product.status,
+            
         
             }}
           />
