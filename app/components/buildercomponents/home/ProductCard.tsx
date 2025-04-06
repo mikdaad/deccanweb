@@ -31,8 +31,8 @@ interface ProductCardProps {
 }
 
 export function ProductCard({ item, className }: ProductCardProps) {
-  const addProductToShoppingCart = () => addItem(item.id, "", "");
-  const addProductToWishlist = () => addToWishlist(item.id, "", "");
+  const addProductToShoppingCart = () => addItem(item.id, 1, "");
+  const addProductToWishlist = () => addToWishlist(item.id, 1, "");
 
   return (
     <div className="bg-gradient-to-r from-[#E8AF52] via-yellow-700 to-[#225043] hover:bg-gradient-to-l  p-[1px] text-white duration-300 hover:shadow-2xl hover:shadow-purple-600/30  rounded-xl">
