@@ -27,7 +27,7 @@ async function getData() {
       itemname: true,
       itemimage: true,
       itemcolor: true,
-      itemsize: true,
+      itemquantity: true,
       User: {
         select: {
           firstName: true,
@@ -108,7 +108,7 @@ export default async function OrdersPage() {
                        {item.itemcolor}
                        </TableCell>
                        <TableCell className="text-right text-sm">
-                       {item.itemsize}
+                       {item.itemquantity}
                        </TableCell>
                    
                    
