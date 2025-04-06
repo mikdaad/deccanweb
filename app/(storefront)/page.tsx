@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
 import styles from './homestyles.module.css'
-import DeccanHomePageV1 from '../components/newcomponents/deccanhomepage';
 import { Banner } from '../components/buildercomponents/home/Banner';
 import { Inter } from 'next/font/google';
 import StatsCard from '../components/newcomponents/statscard';
