@@ -70,7 +70,7 @@ export async function POST(req: NextRequest) {
             itemname: item.name,
             itemquantity: item.quantity,
             itemcolor: item.color,
-            itemsize: item.size,
+            
           },
         })
       )
