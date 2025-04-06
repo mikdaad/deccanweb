@@ -49,8 +49,7 @@ interface iAppProps {
     originalprice:number;
     images: string[];
     category: $Enums.Category;
-    isFeatured: boolean;
-    sizes: String[];
+    ispremium: boolean;
     stars:number;
     colors:string[];
 
@@ -242,7 +241,7 @@ export function EditForm({ data }: iAppProps) {
               <Switch
                 key={fields.ispremium.key}
                 name={fields.ispremium.name}
-                defaultChecked={data.isFeatured}
+                defaultChecked={data.ispremium}
               />
               <p className="text-red-500">{fields.ispremium.errors}</p>
             </div>
