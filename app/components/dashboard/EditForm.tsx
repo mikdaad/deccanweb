@@ -44,13 +44,12 @@ interface iAppProps {
     id: string;
     name: string;
     description: string;
-    status: $Enums.Status;
+    subcategory: string;
     discountprice: number;
     originalprice:number;
     images: string[];
     category: $Enums.Category;
     isFeatured: boolean;
-    gender: $Enums.Gender;
     sizes: String[];
     stars:number;
     colors:string[];
@@ -241,11 +240,11 @@ export function EditForm({ data }: iAppProps) {
             <div className="flex flex-col gap-3">
               <Label>Featured Product</Label>
               <Switch
-                key={fields.isFeatured.key}
-                name={fields.isFeatured.name}
+                key={fields.ispremium.key}
+                name={fields.ispremium.name}
                 defaultChecked={data.isFeatured}
               />
-              <p className="text-red-500">{fields.isFeatured.errors}</p>
+              <p className="text-red-500">{fields.ispremium.errors}</p>
             </div>
 
             <div className="flex flex-col gap-3">
@@ -268,11 +267,11 @@ export function EditForm({ data }: iAppProps) {
             </div>
 
             <div className="flex flex-col gap-3">
-              <Label>Gender</Label>
+              <Label>subcategory</Label>
               <Select
-                key={fields.gender.key}
-                name={fields.gender.name}
-                defaultValue={data.gender}
+                key={fields.subcategory.key}
+                name={fields.subcategory.name}
+                defaultValue={data.subcategory}
               >
                 <SelectTrigger>
                   <SelectValue placeholder="Select gender" />
@@ -288,26 +287,7 @@ export function EditForm({ data }: iAppProps) {
               <p className="text-red-500">{fields.category.errors}</p>
             </div>
 
-            <div className="flex flex-col gap-3">
-              <Label>Status</Label>
-              <Select
-                key={fields.status.key}
-                name={fields.status.name}
-                defaultValue={data.status}
-              >
-                <SelectTrigger>
-                  <SelectValue placeholder="Select Status" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="Dealoftheday">Dealoftheday</SelectItem>
-                  <SelectItem value="TrendingProduct">TrendingProduct</SelectItem>
-                  <SelectItem value="NewArrival">NewArrival</SelectItem>
-                  <SelectItem value="None">None</SelectItem>
-                </SelectContent>
-              </Select>
-              <p className="text-red-500">{fields.status.errors}</p>
-            </div>
-
+            
 
              <div className="flex flex-col gap-3">
       <label className="text-gray-700">Sizes</label>
