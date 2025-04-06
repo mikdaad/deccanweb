@@ -23,7 +23,7 @@ const Index = () => {
               Login to Your Account
             </div>
             <div className="relative mb-6">
-              Don't have an account?{" "}
+              Don not have an account?{" "}
               <button
                 className="font-normal text-[#E8AF52] hover:underline"
                 onClick={toggleForm}
