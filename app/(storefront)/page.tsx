@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-import styles from './homestyles.module.css'
 import { Banner } from '../components/buildercomponents/home/Banner';
 import { Inter } from 'next/font/google';
 import StatsCard from '../components/newcomponents/statscard';
@@ -8,6 +7,7 @@ import HeaderNavigation from "../components/newcomponents/homeheader";
 import { Vectorbanner } from '../components/buildercomponents/home/vectorbanner';
 import Footer from '../components/newcomponents/footer';
 import HeroSection from '../components/newcomponents/Herosection';
+import styles from '../styles/Home.module.css';
 
 const inter = Inter({ subsets: ["latin"] });
 
