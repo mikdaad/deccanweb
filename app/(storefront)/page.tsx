@@ -7,7 +7,7 @@ import HeaderNavigation from "../components/newcomponents/homeheader";
 import { Vectorbanner } from '../components/buildercomponents/home/vectorbanner';
 import Footer from '../components/newcomponents/footer';
 import HeroSection from '../components/newcomponents/Herosection';
-import styles from '../styles/homestyles.module.css';
+import styles from './homestyles.module.css';
 
 const inter = Inter({ subsets: ["latin"] });
 
