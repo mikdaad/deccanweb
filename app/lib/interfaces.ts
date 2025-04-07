@@ -15,6 +15,8 @@ export type newcart = {
      id: string;
     name: string;
     discountprice: number;
+    originalprice: number;
+    discountpercent: number;
     quantity: number;
     imageString: string;
     color:string;

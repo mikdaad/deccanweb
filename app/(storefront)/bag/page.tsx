@@ -27,9 +27,11 @@ export default async function BagRoute() {
   const cart: Cart | null = await redis.get(`cart-${user.id}`);
 
   let totalPrice = 0;
+  let originalprice = 0;
 
 cart?.items.forEach((item) => {
   totalPrice += item.discountprice * Number(item.quantity);
+  originalprice+= item.originalprice * Number(item.quantity);
 });
 
 const cartItems: Array<newcart> = cart?.items?.map((item) => ({
@@ -38,13 +40,15 @@ const cartItems: Array<newcart> = cart?.items?.map((item) => ({
   name: item.name,
   color: item.color,
   discountprice: item.discountprice,
+  originalprice: item.originalprice,
+  discountpercent: Math.round(((item.originalprice - item.discountprice )/ item.originalprice) * 100),
   quantity: item.quantity,
 })) || [];
 
   return (
     <div className="p-4 h-full font-glancyr">
     
-             <PaymentPage totalPrice={totalPrice} cartItems={cartItems} />
+             <PaymentPage originalprice={originalprice} totalPrice={totalPrice} cartItems={cartItems} />
              <Footer/>
 
             </div>

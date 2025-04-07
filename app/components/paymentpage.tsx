@@ -9,11 +9,12 @@ import PricingDetails from "./newcomponents/pricingdetails";
 
 interface PaymentPageProps {
   totalPrice: number;
+  originalprice: number;
   cartItems: newcart[];
 
 }
 
-export default function PaymentPage({ totalPrice,cartItems }: PaymentPageProps) {
+export default function PaymentPage({ totalPrice,cartItems,originalprice }: PaymentPageProps) {
  const [loading, setLoading] = useState(false);
  const [transactionId, setTransactionId] = useState("");
  const initiatePayment = async () => {
@@ -44,10 +45,10 @@ export default function PaymentPage({ totalPrice,cartItems }: PaymentPageProps) 
       <div className="w-full max-w-[1250px] mt-[23px] max-md:max-w-full">
         <div className="gap-5 flex max-md:flex-col max-md:items-stretch">
           <div className="w-[59%] max-md:w-full max-md:ml-0">
-            <ProductCard />
+            <ProductCard cartItems={cartItems}/>
           </div>
           <div className="w-[41%] ml-5 max-md:w-full max-md:ml-0">
-            <PricingDetails />
+            <PricingDetails originalprice={originalprice} totalPrice={totalPrice} />
           </div>
         </div>
       </div>

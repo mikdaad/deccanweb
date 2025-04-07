@@ -98,10 +98,10 @@ const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
 };
 
 const categorySubcategoryMap = {
-  sofa: ["leathersofa", "lshapesofa", "roundshapesofa"],
-  chairs: ["diningchairs", "officechairs", "loungechairs"],
-  homedecor: ["wallart", "vases", "lighting", "mirrors"],
-  carpet: ["persiancarpet", "moderncarpet", "shagcarpet"],
+  Sofa: ["leathersofa", "lshapesofa", "roundshapesofa"],
+  Chairs: ["diningchairs", "officechairs", "loungechairs"],
+  Homedecor: ["wallart", "vases", "lighting", "mirrors"],
+  Carpet: ["persiancarpet", "moderncarpet", "shagcarpet"],
 } as const;
 
 type Category = keyof typeof categorySubcategoryMap;

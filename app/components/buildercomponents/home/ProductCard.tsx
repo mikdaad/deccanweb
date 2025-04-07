@@ -37,18 +37,29 @@ export function ProductCard({ item, className }: ProductCardProps) {
     <div className="bg-gradient-to-r from-[#E8AF52] via-yellow-700 to-[#225043] hover:bg-gradient-to-l  p-[1px] text-white duration-300 hover:shadow-2xl hover:shadow-purple-600/30  rounded-xl">
     <article className={`w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl rounded-2xl shadow-md p-4 bg-[#242424] relative overflow-hidden ${className}   `}>
       <Link href={`/product/${item.id}`} >
-        <div className="relative w-full aspect-[1.5] rounded-t-2xl overflow-hidden">
-          <CldImage
-            src={item.images[0]}
-            alt={item.name}
-            width={600}
-            height={400}
-            crop="fill"
-            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 360px"
-            className="w-full h-full object-cover"
-            loading="lazy"
-          />
-        </div>
+      <div className="relative w-[240] h-[160px] rounded-t-2xl overflow-hidden">
+      <CldImage
+        src={item.images[0]}
+        alt={item.name}
+        // Request an image size from Cloudinary at least as large as the container
+        width={240}
+        height={160}
+        // You might keep or remove crop="fill" depending on preference.
+        // If removed, CSS object-cover handles everything.
+        // If kept, Cloudinary pre-crops, potentially saving bandwidth.
+        crop="fill" // Optional: Cloudinary can also crop server-side
+
+        // Sizes prop is less critical for fixed containers, but can still help browsers
+       // sizes="600px" // Simple size since the container is fixed
+
+        // Image Tag Styling:
+        // - w-full h-full: Make the image element fill the container div
+        // - object-cover: Scale the image while preserving aspect ratio,
+        //                 cropping to fill the container. This is the key part.
+        className="w-full h-full object-cover"
+        loading="lazy"
+      />
+    </div>
       </Link>
 
       

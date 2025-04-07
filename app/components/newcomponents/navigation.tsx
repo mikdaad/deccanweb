@@ -1,11 +1,12 @@
 'use client'
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { useState } from "react";
+import { useState ,useRef,useEffect} from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Search, ShoppingBag } from "lucide-react";
 import UserCart from "../storefront/usercart";
 import { usePathname } from "next/navigation";
+import { Input } from "../ui/input";
 
 
 interface NavigationProps {
@@ -24,6 +25,33 @@ const Navigation = ({ className }: NavigationProps) => {
     { name: "Contact", href: "/contact" },
     { name: "Other", href: "/other" },
   ];
+
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const searchInputRef = useRef<HTMLInputElement>(null);
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      // Do something with searchQuery, like navigate or fetch
+      console.log("Searching for:", searchQuery);
+    }
+    if (e.key === "Escape") {
+      setSearchOpen(false);
+    }
+  };
+
+  // Auto-focus when search opens
+  useEffect(() => {
+    if (searchOpen) {
+      setTimeout(() => {
+        searchInputRef.current?.focus();
+      }, 100);
+    }
+  }, [searchOpen]);
 
   return (
     <nav
@@ -64,12 +92,32 @@ const Navigation = ({ className }: NavigationProps) => {
 
        
        <div className="flex flex-row gap-8">
-<button
-aria-label="Search"
-className="focus:outline-none hover:opacity-80 transition-opacity"
->
-<Search className="w-8 h-8" />
-</button>
+ {/* Search Button */}
+ <button
+            aria-label="Search"
+            className="focus:outline-none hover:opacity-80 transition-opacity"
+            onClick={() => setSearchOpen((prev) => !prev)}
+          >
+            <Search className="w-8 h-8" />
+          </button>
+
+          {/* Search Input Popup */}
+          {searchOpen && (
+            <div className="absolute top-32 right-10 z-50 w-1/3">
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500" />
+                <Input
+                  className="pl-10 pr-4 w-full h-10 rounded-lg text-sm border font-thin border-gray-300 focus:ring-2 focus:ring-white transition-all shadow-yellow-300 shadow-sm text-black"
+                  placeholder="Search any Product..."
+                  ref={searchInputRef}
+                  type="text"
+                  value={searchQuery}
+                  onChange={handleSearchChange}
+                  onKeyDown={handleKeyDown}
+                />
+              </div>
+            </div>
+          )}
 
 <Link href="/bag">  
 <button

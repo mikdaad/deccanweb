@@ -51,24 +51,17 @@ const UserCart = () => {
 
   if (!user) {
     return (
-      <div className="flex flex-col items-center mt-2 space-x-4">
-      <UserDropdown
-        email={"testmail@gmail.com" as string}
-        name={"anonymous"}
-        userImage={"https://avatar.vercel.sh/anonymous"}
-      />
+      <div className="flex flex-col items-center justify-center ">
+      <p className="mb-5 text-gray-600"></p>
+      <Button
+        onClick={() => router.push("/auth/signin")}
+        className="px-2 py-0 bg-gray-100 text-black text-[0.7rem] rounded-md hover:bg-blue-700 transition"
+      >
+        Sign In
+      </Button>
+     
     </div>
-    /*<div className="flex flex-col items-center justify-center ">
-        <p className="mb-5 text-gray-600"></p>
-        <Button
-          onClick={() => router.push("/auth/signin")}
-          className="px-2 py-0 bg-gray-100 text-black text-[0.7rem] rounded-md hover:bg-blue-700 transition"
-        >
-          Sign In
-        </Button>
-       
-      </div>
-      */
+  
     
     );
   }

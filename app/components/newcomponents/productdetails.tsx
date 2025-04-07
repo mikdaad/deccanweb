@@ -72,7 +72,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({
       </div>
 
       <div className="text-white text-2xl font-normal leading-none tracking-[0.72px] mt-[15px]">
-        {price}
+      ₹{price}
       </div>
 
       <p className="text-white text-sm font-light leading-[21px] self-stretch mt-[25px] max-md:mr-[3px]">

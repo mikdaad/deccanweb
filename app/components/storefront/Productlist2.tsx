@@ -24,53 +24,79 @@ interface Product {
 interface ProductListProps {
   subcategory?: Subcategory;
   category?: Category;
+  priceRange?: { min: number; max: number }; 
 }
 
-export default function ProductList({ subcategory, category }: ProductListProps) {
+export default function ProductList({ subcategory, category , priceRange }: ProductListProps) {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     async function fetchProducts() {
-      try {
-        // Build query parameters dynamically
-        const params = new URLSearchParams({
-          ...(subcategory && { subcategory }),
-          ...(category && { category }),
-   
-        });
+        setLoading(true); // Set loading true at the start of fetch
+        try {
+            // Build query parameters dynamically
+            const params = new URLSearchParams();
+            if (subcategory) {
+                params.append('subcategory', subcategory);
+            }
+            if (category) {
+                params.append('category', category);
+            }
+            // Add price range parameters if they exist
+            if (priceRange) {
+                params.append('minPrice', priceRange.min.toString());
+                params.append('maxPrice', priceRange.max.toString());
+            }
 
-        const response = await fetch(`/api/products?${params.toString()}`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+            // Construct the URL safely
+            const apiUrl = `/api/products?${params.toString()}`;
 
-        if (!response.ok) {
-          throw new Error("Failed to fetch products");
+            const response = await fetch(apiUrl, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+
+            if (!response.ok) {
+                // Log the response status for debugging
+                console.error(`Error fetching products: ${response.status} ${response.statusText}`);
+                const errorBody = await response.text(); // Read error body if possible
+                console.error("Error body:", errorBody);
+                throw new Error("Failed to fetch products");
+            }
+
+            const res: Product[] = await response.json();
+
+            // Convert Decimal fields to numbers - This seems redundant if API already does it, but safe to keep
+            const formattedProducts: Product[] = res.map((product) => ({
+                ...product,
+                // Ensure the fields exist before trying to convert
+                stars: typeof product.stars === 'object' && product.stars !== null && (product.stars as any)?.toNumber ? (product.stars as any).toNumber() : product.stars,
+                discountprice: typeof product.discountprice === 'object' && product.discountprice !== null && (product.discountprice as any)?.toNumber ? (product.discountprice as any).toNumber() : product.discountprice,
+                // Also format 'price' if it's Decimal and you need it as number
+                 originalprice: typeof product.originalprice === 'object' && product.originalprice !== null && (product.originalprice as any)?.toNumber ? (product.originalprice as any).toNumber() : product.originalprice,
+            }));
+
+            // Removed the slice(-4) - assuming you want all filtered products
+            // If you still want only the last 4 *after* filtering, keep it:
+            // const lastFourProducts = formattedProducts.slice(-4);
+            // setProducts(lastFourProducts);
+
+            setProducts(formattedProducts); // Set all filtered products
+
+        } catch (error) {
+            console.error("Error fetching products:", error);
+             setProducts([]); // Clear products on error
+        } finally {
+            setLoading(false);
         }
-
-        const res: Product[] = await response.json();
-
-        // Convert Decimal fields to numbers if necessary
-        const formattedProducts: Product[] = res.map((product) => ({
-          ...product,
-          stars: (product.stars as any)?.toNumber ? (product.stars as any).toNumber() : product.stars, 
-          discountprice: (product.discountprice as any)?.toNumber ? (product.discountprice as any).toNumber() : product.discountprice,
-        }));
-        const lastFourProducts = formattedProducts.slice(-4);
-
-        setProducts(lastFourProducts);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      } finally {
-        setLoading(false);
-      }
     }
 
     fetchProducts();
-  }, [subcategory, category]);
+    // Add priceRange to the dependency array
+}, [subcategory, category, priceRange]);
 
   return (
     <div className="grid grid-cols-2  lg:grid-cols-4 gap-x-4">

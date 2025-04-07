@@ -1,8 +1,16 @@
 import React, { useState } from "react";
 
-const PricingDetails: React.FC = () => {
+
+interface PricingDetailsProps {
+  totalPrice: number;
+  originalprice: number;
+
+}
+export default function PricingDetails({ totalPrice,originalprice }: PricingDetailsProps) {
   const [couponCode, setCouponCode] = useState("");
   const [showCouponInput, setShowCouponInput] = useState(false);
+  const discountAmount = originalprice - totalPrice;
+  const discountPercent = Math.round((discountAmount / originalprice) * 100);
 
   const handleApplyCoupon = () => {
     setShowCouponInput(!showCouponInput);
@@ -15,7 +23,7 @@ const PricingDetails: React.FC = () => {
           <div className="w-[77%] max-md:w-full max-md:ml-0">
             <div className="flex grow flex-col text-base text-white font-normal tracking-[0.48px] max-md:mt-10">
               <div>Sub total</div>
-              <div className="mt-4">Discount (30%)</div>
+              <div className="mt-4">Discount ({discountPercent}%)</div>
               <div className="text-[rgba(26,255,52,1)] font-semibold mt-4">
                 Total Saving
               </div>
@@ -26,11 +34,11 @@ const PricingDetails: React.FC = () => {
           </div>
           <div className="w-[23%] ml-5 max-md:w-full max-md:ml-0">
             <div className="grow text-base whitespace-nowrap text-right tracking-[0.48px] max-md:mt-10">
-              <div className="text-white font-medium">₹20000</div>
-              <div className="text-white font-medium mt-4">-₹10000</div>
+              <div className="text-white font-medium">₹{originalprice}</div>
+              <div className="text-white font-medium mt-4">-₹{discountAmount}</div>
               <div className="flex flex-col mt-4 pl-[13px]">
                 <div className="text-[rgba(26,255,52,1)] font-semibold">
-                  ₹900
+                ₹{discountAmount}
                 </div>
                 <div className="text-white font-medium mt-4">₹0</div>
               </div>
@@ -67,7 +75,7 @@ const PricingDetails: React.FC = () => {
         </div>
         <div className="flex flex-col items-stretch">
           <div className="text-white text-2xl font-medium leading-none tracking-[0.72px]">
-            ₹10000
+            {totalPrice}
           </div>
           <button className="self-stretch bg-[rgba(218,175,80,1)] min-h-[51px] gap-2.5 text-base text-black font-semibold text-center leading-loose mt-4 px-12 py-[13px] rounded-lg max-md:px-5 hover:bg-[rgba(232,185,92,1)] transition-colors">
             Check Out Now
@@ -78,4 +86,4 @@ const PricingDetails: React.FC = () => {
   );
 };
 
-export default PricingDetails;
+

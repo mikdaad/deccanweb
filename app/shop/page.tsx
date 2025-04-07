@@ -22,15 +22,15 @@ export default function Shop() {
       </header>
 
       {/* Main Layout */}
-      <main className="flex flex-col lg:flex-row gap-8 px-4 lg:px-20 py-8 min-h-screen">
+      <main className="flex flex-col lg:flex-row gap-8    min-h-screen">
         {/* Filter Sidebar */}
-        <div className="w-[412px]">
+        <div className="w-[412px] ml-4">
           <FilterCard setFilters={setFilters} />
         </div>
         {/* Product List */}
         <section className="flex-1 mt-10 lg:mt-0 space-y-12">
-          <ProductList subcategory={filters.category as Subcategory} />
-          <ProductList subcategory={filters.category as Subcategory} />
+          <ProductList subcategory={filters.category as Subcategory} priceRange={filters.price}   />
+          <ProductList subcategory={filters.category as Subcategory} priceRange={filters.price}   />
         </section>
       </main>
 

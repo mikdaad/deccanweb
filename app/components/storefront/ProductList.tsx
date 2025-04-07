@@ -80,7 +80,7 @@ useEffect(() => {
         ))
       ) : (
         <div className="flex justify-center items-center">
-        <div className="animate-spin rounded-full h-10 w-10 border-t-4 border-black border-solid"></div>
+        <div className="animate-spin rounded-full h-10 w-10 border-t-4 border-yellow-600 border-solid"></div>
       </div>
       )}
      

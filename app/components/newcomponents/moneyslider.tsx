@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./moneyslider.css";
 
 interface SliderComponentProps {
-  onDataUpdate: (min: number, max: number) => void;
+  onDataUpdate: (max: number) => void;
   valb: number;
   minm: number;
 }
@@ -16,10 +16,10 @@ const SliderComponent: React.FC<SliderComponentProps> = ({ onDataUpdate, valb, m
 
     if (type === "min" && newValue < maxValue) {
       setMinValue(newValue);
-      onDataUpdate(newValue, maxValue);
+      onDataUpdate(newValue);
     } else if (type === "max" && newValue > minValue) {
       setMaxValue(newValue);
-      onDataUpdate(minValue, newValue);
+      onDataUpdate(newValue);
     }
   };
 

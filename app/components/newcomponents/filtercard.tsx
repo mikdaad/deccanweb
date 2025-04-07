@@ -31,6 +31,11 @@ export const FilterCard: React.FC<FilterCardProps> = ({ setFilters }) => {
     });
   }, [selectedCategory, childData, setFilters]);
 
+  const handleApply = () => {
+    // Send filter data to parent
+    
+  };
+
   return (
     <div className="bg-gradient-to-r from-[#E8AF52] via-yellow-700 to-[#225043] hover:bg-gradient-to-l inset-3 p-[2px] text-white duration-300 hover:shadow-2xl hover:shadow-purple-600/30 rounded-xl m-0 max-w-[305px] text-base font-light font-['Blauer_Nue']">
       <div className="shadow-[0px_1px_0px_0px_rgba(255,255,255,0.08)_inset] inset-1 bg-black w-full overflow-hidden pt-[50px] pb-[29px] px-4 rounded-lg border-solid" aria-label="Price filter card">
@@ -42,6 +47,10 @@ export const FilterCard: React.FC<FilterCardProps> = ({ setFilters }) => {
             <SliderComponent valb={childData} onDataUpdate={handleChildData} minm={999} />
           </div>
         </div>
+        
+        <div className="whitespace-nowrap">
+              <CustomButton onClick={handleApply}>Apply</CustomButton>
+            </div>
 
         <FilterCategory
           name="Premium Sofa"
