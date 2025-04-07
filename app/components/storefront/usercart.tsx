@@ -51,7 +51,14 @@ const UserCart = () => {
 
   if (!user) {
     return (
-      <div className="flex flex-col items-center justify-center ">
+      <div className="flex flex-col items-center mt-2 space-x-4">
+      <UserDropdown
+        email={"testmail@gmail.com" as string}
+        name={"anonymous"}
+        userImage={user.profileImage ?? `https://avatar.vercel.sh/${user.firstName}`}
+      />
+    </div>
+    /*<div className="flex flex-col items-center justify-center ">
         <p className="mb-5 text-gray-600"></p>
         <Button
           onClick={() => router.push("/auth/signin")}
@@ -61,6 +68,8 @@ const UserCart = () => {
         </Button>
        
       </div>
+      */
+    
     );
   }
  
