@@ -55,7 +55,7 @@ const UserCart = () => {
       <UserDropdown
         email={"testmail@gmail.com" as string}
         name={"anonymous"}
-        userImage={user.profileImage ?? `https://avatar.vercel.sh/${user.firstName}`}
+        userImage={"https://avatar.vercel.sh/anonymous"}
       />
     </div>
     /*<div className="flex flex-col items-center justify-center ">
