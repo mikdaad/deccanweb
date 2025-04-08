@@ -389,6 +389,31 @@ type Subcategory = (typeof categorySubcategoryMap)[Category][number];
   <p className="text-red-500">{fields.warranty.errors}</p>
 </div>
 
+<div className="flex flex-col gap-3">
+  <Label>Long description</Label>
+  <Input
+    key={fields.longdescription.key}
+    name={fields.longdescription.name}
+    defaultValue={fields.longdescription.initialValue}
+    type="text"
+    placeholder="More about the product...."
+  />
+  <p className="text-red-500">{fields.longdescription.errors}</p>
+</div>
+
+<div className="flex flex-col gap-3">
+              <Label>In stock</Label>
+              <Switch
+                key={fields.isstock.key}
+                name={fields.isstock.name}
+                defaultValue={fields.isstock.initialValue}
+              />
+              <p className="text-red-500">{fields.isstock.errors}</p>
+            </div>
+
+
+
+
 
           
           </div>

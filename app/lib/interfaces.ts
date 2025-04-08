@@ -34,3 +34,5 @@ export type Wishlist = {
     quantity: number;
   }>;
 };
+
+

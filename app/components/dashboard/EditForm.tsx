@@ -52,6 +52,12 @@ interface iAppProps {
     ispremium: boolean;
     stars:number;
     colors:string[];
+    dimensions: string;
+    weight: string;
+    material: string;
+    warranty: string;
+    longdescription: string;
+    isstock: boolean;
 
     
   };
@@ -142,7 +148,64 @@ export function EditForm({ data }: iAppProps) {
 
               <p className="text-red-500">{fields.name.errors}</p>
             </div>
+
+            <div className="flex flex-col gap-3">
+              <Label>is Stock?</Label>
+              <Switch
+                key={fields.isstock.key}
+                name={fields.isstock.name}
+                defaultChecked={data.isstock}
+              />
+              <p className="text-red-500">{fields.isstock.errors}</p>
+            </div>
+
            
+            <div className="flex flex-col gap-3">
+              <Label>Warranty</Label>
+              <Textarea
+                key={fields.warranty.key}
+                name={fields.warranty.name}
+                defaultValue={data.warranty}
+                placeholder="update  warranty right here..."
+              />
+              <p className="text-red-500">{fields.warranty.errors}</p>
+            </div>
+          
+
+            <div className="flex flex-col gap-3">
+              <Label>weight</Label>
+              <Textarea
+                key={fields.weight.key}
+                name={fields.weight.name}
+                defaultValue={data.weight}
+                placeholder="update  warranty right here..."
+              />
+              <p className="text-red-500">{fields.weight.errors}</p>
+            </div>
+
+            <div className="flex flex-col gap-3">
+              <Label>dimensions</Label>
+              <Textarea
+                key={fields.dimensions.key}
+                name={fields.dimensions.name}
+                defaultValue={data.dimensions}
+                placeholder="update  warranty right here..."
+              />
+              <p className="text-red-500">{fields.dimensions.errors}</p>
+            </div>
+
+            
+
+            <div className="flex flex-col gap-3">
+              <Label>material</Label>
+              <Textarea
+                key={fields.material.key}
+                name={fields.material.name}
+                defaultValue={data.material}
+                placeholder="update  warranty right here..."
+              />
+              <p className="text-red-500">{fields.material.errors}</p>
+              </div>
 
             <div className="flex flex-col gap-3">
               <Label>Description</Label>
@@ -154,6 +217,18 @@ export function EditForm({ data }: iAppProps) {
               />
               <p className="text-red-500">{fields.description.errors}</p>
             </div>
+
+            <div className="flex flex-col gap-3">
+              <Label>Long Description</Label>
+              <Textarea
+                key={fields.longdescription.key}
+                name={fields.longdescription.name}
+                defaultValue={data.longdescription}
+                placeholder="Write your long description right here..."
+              />
+              <p className="text-red-500">{fields.longdescription.errors}</p>
+            </div>
+            
             <div className="flex flex-col gap-3">
               <Label>discountprice</Label>
               <Input

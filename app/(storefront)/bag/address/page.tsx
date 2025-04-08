@@ -12,6 +12,7 @@ import Footer from "@/app/components/newcomponents/footer";
 import ShippingAddressForm from "@/app/components/newcomponents/shippingadressform";
 import OrderSummary from "@/app/components/newcomponents/ordersummary";
 import CartProgress from "@/app/components/newcomponents/cartprogress";
+import PricingDetails from "@/app/components/newcomponents/pricingdetails";
 
 import { redirect } from "next/navigation";
 
@@ -44,7 +45,9 @@ const cartItems: Array<newcart> = cart?.items?.map((item) => ({
 })) || [];
 
   return (
-    <div className="p-4 h-full font-glancyr">
+    <div>
+      <div className="w-[712px] h-[712px] left-[220px] top-[128px] absolute opacity-10 bg-[radial-gradient(ellipse_50%_50%_at_50%_50%,_#F9BF00_0%,_rgba(252,_232,_3,_0)_100%)] blur-3xl z-0"></div>
+    <div className="absolute z-10 p-4 h-full font-glancyr">
       <CartProgress currentStep={2} />
     
 
@@ -53,24 +56,28 @@ const cartItems: Array<newcart> = cart?.items?.map((item) => ({
         </div>
 
         {/* Main Content - Address Form and Order Summary */}
+        
         <div className="mt-[23px] max-md:max-w-full">
           <div className="gap-5 flex max-md:flex-col max-md:items-stretch">
             {/* Left Column - Shipping Address Form */}
             <div className="w-[59%] max-md:w-full max-md:ml-0">
-            <div className="w-[712px] h-[712px] left-[220px] top-[128px] absolute opacity-10 bg-[radial-gradient(ellipse_50%_50%_at_50%_50%,_#F9BF00_0%,_rgba(252,_232,_3,_0)_100%)] blur-3xl z-0"></div>
-              <ShippingAddressForm />
+          
+              <div className="z-10"><ShippingAddressForm /></div>
             </div>
 
-            {/* Right Column - Order Summary */}
+            {/* Right Column - Order Summary 
             <div className="w-[41%] ml-5 max-md:w-full max-md:ml-0">
-              <OrderSummary />
+              <PricingDetails totalPrice={7899} originalprice={12900} />
             </div>
+            */}
           </div>
         </div>
 
              <Footer/>
 
             </div>
+
+</div>
           
   );
 }

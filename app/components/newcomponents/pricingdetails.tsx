@@ -1,12 +1,16 @@
+"use client"
 import React, { useState } from "react";
 
 
 interface PricingDetailsProps {
   totalPrice: number;
   originalprice: number;
+  setstep: (step: number) => void;
+  step: number;
+
 
 }
-export default function PricingDetails({ totalPrice,originalprice }: PricingDetailsProps) {
+export default function PricingDetails({ totalPrice,originalprice,setstep,step }: PricingDetailsProps) {
   const [couponCode, setCouponCode] = useState("");
   const [showCouponInput, setShowCouponInput] = useState(false);
   const discountAmount = originalprice - totalPrice;
@@ -77,7 +81,7 @@ export default function PricingDetails({ totalPrice,originalprice }: PricingDeta
           <div className="text-white text-2xl font-medium leading-none tracking-[0.72px]">
             {totalPrice}
           </div>
-          <button className="self-stretch bg-[rgba(218,175,80,1)] min-h-[51px] gap-2.5 text-base text-black font-semibold text-center leading-loose mt-4 px-12 py-[13px] rounded-lg max-md:px-5 hover:bg-[rgba(232,185,92,1)] transition-colors">
+          <button className="self-stretch bg-[rgba(218,175,80,1)] min-h-[51px] gap-2.5 text-base text-black font-semibold text-center leading-loose mt-4 px-12 py-[13px] rounded-lg max-md:px-5 hover:bg-[rgba(232,185,92,1)] transition-colors" onClick={() => setstep(step+1)}>
             Check Out Now
           </button>
         </div>

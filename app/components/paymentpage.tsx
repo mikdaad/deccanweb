@@ -11,10 +11,12 @@ interface PaymentPageProps {
   totalPrice: number;
   originalprice: number;
   cartItems: newcart[];
+  setstep: (step: number) => void;
+  step: number;
 
 }
 
-export default function PaymentPage({ totalPrice,cartItems,originalprice }: PaymentPageProps) {
+export default function PaymentPage({ totalPrice,cartItems,originalprice,setstep,step }: PaymentPageProps) {
  const [loading, setLoading] = useState(false);
  const [transactionId, setTransactionId] = useState("");
  const initiatePayment = async () => {
@@ -48,7 +50,7 @@ export default function PaymentPage({ totalPrice,cartItems,originalprice }: Paym
             <ProductCard cartItems={cartItems}/>
           </div>
           <div className="w-[41%] ml-5 max-md:w-full max-md:ml-0">
-            <PricingDetails originalprice={originalprice} totalPrice={totalPrice} />
+            <PricingDetails originalprice={originalprice} totalPrice={totalPrice} setstep={setstep} step={step}/>
           </div>
         </div>
       </div>

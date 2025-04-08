@@ -41,6 +41,7 @@ export async function GET(req: Request) {
       state: userAddress?.state || "",
       postalCode: userAddress?.postalCode || "",
       phoneno: userAddress?.phoneno || "",
+      shippingnote: userAddress?.shippingnote || "",
       
     });
   } catch (error) {
@@ -64,7 +65,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Invalid JSON format" }, { status: 400 });
     }
 
-    const { firstName, lastName, street, city, state, postalCode,phoneno } = formData;
+    const { firstName, lastName, street, city, state, postalCode,phoneno,shippingnote } = formData;
 
     // Validate user existence
     const existingUser = await db.user.findUnique({
@@ -86,8 +87,8 @@ export async function POST(req: Request) {
         address: {
           upsert: {
             where: { id: existingUser.id }, // Ensure unique address is updated
-            create: { street, city, state, postalCode,phoneno,  id: existingUser.id },
-            update: { street, city, state, postalCode,phoneno },
+            create: { shippingnote, street, city, state, postalCode,phoneno,  id: existingUser.id },
+            update: {shippingnote, street, city, state, postalCode,phoneno },
           },
         },
       },

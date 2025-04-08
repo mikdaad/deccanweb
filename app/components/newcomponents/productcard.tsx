@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { newcart } from "@/app/lib/interfaces";
+import { delItem , moveToWishlist , Incdeccart} from "@/app/actions";
 
 interface ProductCardprops {
   cartItems: newcart[];
@@ -43,15 +44,26 @@ export default function ProductCard({ cartItems }: ProductCardprops) {
   <div className="w-[76%] ml-5 max-md:w-full max-md:ml-0">
     <div className="flex w-full flex-col items-stretch max-md:max-w-full max-md:mt-10">
       <div className="flex items-stretch gap-[17px] text-base text-[rgba(186,186,186,1)] font-normal">
-        <button className="flex items-stretch gap-[5px] hover:text-white transition-colors">
+
+        
+
+        <form action={moveToWishlist} className="text-end">
+                    <input type="hidden" name="productId" value={item.id} />
+                    <input type="hidden" name="color" value={item.color} />
+                    <input type="hidden" name="quantity" value={item.quantity} />
+                    <button className="flex items-stretch gap-[5px] hover:text-white transition-colors">
           <img
             src="https://cdn.builder.io/api/v1/image/assets/9e14ec760a13409cba0be5c570ba1763/ebe2f6019a34d657e3a87a406be12b508939378e?placeholderIfAbsent=true"
             alt="Wishlist"
             className="aspect-[1.11] object-contain w-5 shrink-0"
           />
           <span className="basis-auto">Add to wishlist</span>
-        </button>
-        <button className="flex items-stretch gap-[5px] hover:text-white transition-colors">
+        </button></form>
+
+        
+        <form action={delItem} className="text-end">
+                    <input type="hidden" name="productId" value={item.id} />
+                    <button className="flex items-stretch gap-[5px] hover:text-white transition-colors">
           <img
             src="https://cdn.builder.io/api/v1/image/assets/9e14ec760a13409cba0be5c570ba1763/4adf7c0fd6291357792bc6739ce5cdc353ace1e5?placeholderIfAbsent=true"
             alt="Remove"
@@ -59,6 +71,9 @@ export default function ProductCard({ cartItems }: ProductCardprops) {
           />
           <span className="basis-auto">Remove from cart</span>
         </button>
+        </form>
+
+
       </div>
       <div className="text-white text-2xl font-semibold leading-none tracking-[0.72px] mt-10">
         {item.name}
@@ -74,19 +89,37 @@ export default function ProductCard({ cartItems }: ProductCardprops) {
               <div className="flex w-full items-stretch gap-4 whitespace-nowrap">
                 <div className="text-white">Qty</div>
                 <div className="bg-[rgba(217,217,217,1)] flex items-center justify-between text-black flex-1 px-2 py-1 rounded-lg">
-                  <button
+
+                 
+
+                  <form action={Incdeccart} className="text-end">
+                    <input type="hidden" name="productId" value={item.id} />
+                    <input type="hidden" name="color" value={item.color} />
+                    <input type="hidden" name="quantity" value={item.quantity} />
+                    <input type="hidden" name="number" value={-1} />
+
+                    <button
                     onClick={decreaseQuantity}
                     className="text-gray-600 px-1"
                   >
                     -
                   </button>
+        </form>
                   <div>{item.quantity}</div>
-                  <button
+                  <form action={Incdeccart} className="text-end">
+                    <input type="hidden" name="productId" value={item.id} />
+                    <input type="hidden" name="color" value={item.color} />
+                    <input type="hidden" name="quantity" value={item.quantity} />
+                    <input type="hidden" name="number" value={1} />
+
+                    <button
                     onClick={increaseQuantity}
                     className="text-gray-600 px-1"
                   >
                     +
                   </button>
+        </form>
+                 
                 </div>
               </div>
               <div className="text-white mt-4">

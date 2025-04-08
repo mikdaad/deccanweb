@@ -36,6 +36,7 @@ model User {
   createdAt DateTime @default(now())
 }
 
+
 model Account {
   id                 String  @id @default(cuid())
   userId             String  @map("user_id")
@@ -88,6 +89,7 @@ model Address {
   state     String
   postalCode String
   phoneno     String
+  shippingnote String?
 }
 
 model Product {
@@ -106,10 +108,30 @@ model Product {
   material    String?
   weight      String?
   warranty    String?
+  longdescription String?
+  isstock     Boolean       @default(true)
+  reviews         Review[]
+
   
 
   createdAt DateTime @default(now())
 }
+
+model Review {
+  id        String   @id @default(uuid())
+  name      String   // Reviewer's name
+  star      Int      // Star rating for this specific review
+  review    String   // The review text
+  createdAt DateTime @default(now())
+
+  product   Product @relation(fields: [productId], references: [id])
+  productId String
+
+  // Optional: Index for querying reviews by product
+  @@index([productId])
+}
+
+
 
 
 model Order {

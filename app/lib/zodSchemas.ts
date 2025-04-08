@@ -15,5 +15,19 @@ export const productSchema = z.object({
   weight: z.string(),
   material: z.string(),
   warranty: z.string(),
+  longdescription: z.string(),
+  isstock: z.boolean(),
+  reviews: z.array(z.object({
+    name: z.string(),star: z.number().min(1),review: z.string()
+  })),
 
+});
+
+
+// Separate Schema for adding a Review later (e.g., by a customer)
+export const reviewSchema = z.object({
+  productId: z.string().uuid("Invalid Product ID"),
+  name: z.string().min(1, "Reviewer name is required"),
+  star: z.number().int().min(1).max(5),
+  review: z.string().min(10, "Review must be at least 10 characters"),
 });

@@ -15,12 +15,10 @@ export default function NewProductPage ({ data }: { data: any })  {
     id,
     name,
     discountprice,
-    originalprice,
     stars,
     colors,
-    reviewCount,
-    inStock,
-    price,
+    isstock,
+    longdescription,
     description,
     longDescription,
     images,
@@ -83,7 +81,7 @@ export default function NewProductPage ({ data }: { data: any })  {
                   title={name}
                   rating={stars}
                   reviewCount={150}
-                  inStock={false}
+                  inStock={isstock}
                   price={discountprice}
                   description={description}
                   colors={colors}
@@ -95,7 +93,7 @@ export default function NewProductPage ({ data }: { data: any })  {
               {/* Description Section */}
         <div className="w-[82%] max-md:w-full my-5">
           <ProductDescription
-            description={longDescription}
+            description={longdescription}
             warranty={warranty}
             weight={weight}
             dimensions={dimensions}

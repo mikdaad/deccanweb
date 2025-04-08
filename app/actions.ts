@@ -4,10 +4,70 @@ import { redirect } from "next/navigation";
 import { parseWithZod } from "@conform-to/zod";
 import {  productSchema } from "./lib/zodSchemas";
 import { redis } from "./lib/redis";
-import { Cart,Wishlist } from "./lib/interfaces";
+import { Cart,Wishlist,newcart } from "./lib/interfaces";
 import { revalidatePath } from "next/cache";
 import db from "../lib/db";
 
+
+
+
+export async function getBagData(userId: string | undefined | null) {
+ 
+
+  if (!userId) {
+    return {
+      user: null,
+      cart: null,
+      totalPrice: 0,
+      originalprice: 0,
+      cartItems: [],
+    };
+  }
+
+  const user = await db.user.findUnique({ where: { id: userId } });
+
+  if (!user) {
+    return {
+      user: null,
+      cart: null,
+      totalPrice: 0,
+      originalprice: 0,
+      cartItems: [],
+    };
+  }
+
+  const cart: Cart | null = await redis.get(`cart-${user.id}`);
+
+  let totalPrice = 0;
+  let originalprice = 0;
+
+  cart?.items?.forEach((item) => {
+    totalPrice += item.discountprice * Number(item.quantity);
+    originalprice += item.originalprice * Number(item.quantity);
+  });
+
+  const cartItems: Array<newcart> =
+    cart?.items?.map((item) => ({
+      id: item.id,
+      imageString: item.imageString,
+      name: item.name,
+      color: item.color,
+      discountprice: item.discountprice,
+      originalprice: item.originalprice,
+      discountpercent: Math.round(
+        ((item.originalprice - item.discountprice) / item.originalprice) * 100
+      ),
+      quantity: item.quantity,
+    })) || [];
+
+  return {
+    user,
+    cart,
+    totalPrice,
+    originalprice,
+    cartItems,
+  };
+}
 
 export async function createProduct(prevState: unknown, formData: FormData) {
     //const user = await db.user.current();
@@ -69,6 +129,8 @@ export async function createProduct(prevState: unknown, formData: FormData) {
       weight: submission.value.weight,
       material: submission.value.material,
       warranty: submission.value.warranty,
+      longdescription: submission.value.longdescription,
+      isstock: submission.value.isstock === true ? true : false,
 
     // ✅ Ensure colors are always stored as an array
     colors:flattencolors,
@@ -141,6 +203,8 @@ export async function editProduct(prevState: any, formData: FormData) {
       ispremium: submission.value.ispremium === true ? true : false,
       colors:colors,
       images: flattenUrls,
+      isstock: submission.value.isstock === true ? true : false,
+      longdescription: submission.value.longdescription,
       
     },
   });
@@ -239,6 +303,86 @@ export async function addItem(productId: string, quantity: number, color: string
 }
 
 
+export async function Incdeccart(formData: FormData) {
+  const user = await db.user.current();
+  const productId = formData.get("productId") as string; // Extract productId
+  const color = formData.get("color") as string; // Extract color
+  const number = parseInt(formData.get("number") as string, 10);// Extract quantity
+  const quantity =  parseInt(formData.get("quantity") as string, 10);  // Extract quantity
+
+
+if (!user) {
+  return redirect("/");
+}
+
+let cart: Cart | null = await redis.get(`cart-${user.id}`);
+
+const selectedProduct = await db.product.findUnique({
+  select: {
+    id: true,
+    name: true,
+    originalprice: true,
+    discountprice:true,
+    images: true,
+  },
+  where: {
+    id: productId,
+  },
+});
+
+if (!selectedProduct) {
+  throw new Error("No product with this id");
+}
+
+let myCart = {} as Cart;
+
+if (!cart || !cart.items) {
+  myCart = {
+    userId: user.id,
+    items: [
+      {
+        id: selectedProduct.id,
+        name: selectedProduct.name,
+        originalprice: selectedProduct.originalprice,
+        discountprice:selectedProduct.discountprice,
+        imageString: selectedProduct.images[0],
+        quantity: quantity,
+        color: color,
+      },
+    ],
+  };
+} else {
+  let itemFound = false;
+
+  myCart.items = cart.items.map((item) => {
+    if (item.id === productId && item.color === color) {
+      itemFound = true;
+      item.quantity = item.quantity as number + number as number;
+    }
+    return item;
+  });
+
+  if (!itemFound) {
+    myCart.items.push({
+      id: selectedProduct.id,
+      name: selectedProduct.name,
+      originalprice: selectedProduct.originalprice,
+      discountprice:selectedProduct.discountprice,
+      imageString: selectedProduct.images[0],
+      quantity: 1,
+      color: color,
+    });
+  }
+}
+
+await redis.set(`cart-${user.id}`, myCart);
+
+revalidatePath("/", "layout");
+}
+
+
+
+
 
 export async function getData(productId: string) {
   const data = await db.product.findUnique({
@@ -256,6 +400,8 @@ export async function getData(productId: string) {
       dimensions: true,
       material: true,
       stars: true,
+      longdescription: true,
+      isstock: true,
       
 
     },
@@ -433,6 +579,72 @@ export async function moveToCart(formData: FormData) {
   revalidatePath("/", "layout");
 }
 
+
+export async function moveToWishlist(formData: FormData) {
+  "use server";
+
+const productId = formData.get("productId") as string; // Extract productId
+  const color = formData.get("color") as string; // Extract color
+  const quantity = formData.get("quantity") as unknown as number; // Extract quantity
+  if (!productId) {
+    throw new Error("Product ID is missing from form data.");
+  }
+
+  const user = await db.user.current();
+
+  if (!user) {
+    return redirect("/");
+  }
+
+  console.log("Fetching cart for:", `cart-${user.id}`);
+
+  let cart: Cart | null = await redis.get(`cart-${user.id}`);
+  console.log("Fetched cart:", cart);
+
+  if (!cart || !cart.items) {
+    throw new Error("Cart is empty.");
+  }
+
+  console.log("Looking for product:", productId);
+
+  const selectedProduct = cart.items.find((item) => item.id === productId);
+  console.log("Found product:", selectedProduct);
+
+  if (!selectedProduct) {
+    throw new Error(`Product not found in cart: ${productId}`);
+  }
+
+  // Remove the product from the cart
+  cart.items = cart.items.filter((item) => item.id !== productId);
+  await redis.set(`cart-${user.id}`, cart);
+
+  // Add the product to the wishlist
+  let wishlist: Wishlist | null = await redis.get(`wishlist-${user.id}`);
+  let myWishlist: Wishlist = wishlist ?? { userId: user.id, items: [] };
+  const existingWishlistItem = myWishlist.items.find((item) => item.id === productId && item.color === color);
+
+  if (existingWishlistItem) {
+    // If the item already exists in the wishlist with the same color, you might want to:
+    // 1. Increment the quantity (if your wishlist supports quantity)
+    // 2. Do nothing (prevent duplicates)
+    // 3. Throw an error or handle it differently
+    // For this example, we'll prevent duplicates with the same color.
+    console.log(`Product with ID ${productId} and color ${color} already exists in the wishlist.`);
+  } else {
+    myWishlist.items.push({
+      id: selectedProduct.id,
+      name: selectedProduct.name,
+      originalprice: selectedProduct.originalprice,
+      discountprice: selectedProduct.discountprice,
+      imageString: selectedProduct.imageString,
+      quantity: quantity , // Or use the quantity passed to the function if you want to move multiple
+      color: selectedProduct.color, // Use the color from the cart item
+    });
+  }
+
+  await redis.set(`wishlist-${user.id}`, myWishlist);
+  revalidatePath("/", "layout");
+}
 
 export async function delWishlistItem(formData: FormData) {
   "use server";

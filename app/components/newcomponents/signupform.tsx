@@ -49,16 +49,11 @@ export function SignupForm({ onLoginClick }: SignupFormProps) {
   };
 
   return (
-    <div className="flex flex-col shadow-[0px_1px_0px_0px_rgba(255,255,255,0.08)_inset] overflow-hidden relative min-h-[916px] w-full px-20 py-[158px] max-md:max-w-full max-md:px-5 max-md:py-[100px]">
+    <div className="flex flex-col shadow-[0px_1px_0px_0px_rgba(255,255,255,0.08)_inset] overflow-hidden relative min-h-[916px] w-full  py-[158px] max-md:max-w-full max-md:px-5 max-md:py-[100px]">
      <div className="flex flex-row">
-        <div><img
-        src="https://cdn.builder.io/api/v1/image/assets/9e14ec760a13409cba0be5c570ba1763/f790c1b94dc522095aaa378032b082925ce70814?placeholderIfAbsent=true"
-        alt="Background"
-        className=" h-full w-full object-cover inset-0"
-      />
-      </div>
+        
       <div>
-      <h1 className="relative text-5xl font-medium mr-[93px] max-md:max-w-full max-md:text-[40px] max-md:mr-2.5">
+      <h1 className="relative text-5xl font-medium  max-md:max-w-full max-md:text-[40px] max-md:mr-2.5">
         Create an Account
       </h1>
       <p className="relative mr-[166px] mt-4 max-md:mr-2.5">

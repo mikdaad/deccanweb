@@ -1,57 +1,17 @@
-import { checkOut, delItem } from "@/app/actions";
-import { ChceckoutButton, DeleteItem } from "@/app/components/SubmitButtons";
-import { Cart,newcart } from "@/app/lib/interfaces";
-import { redis } from "@/app/lib/redis";
-import { Button } from "@/components/ui/button";
-import { ShoppingBag } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
-import { unstable_noStore as noStore } from "next/cache";
+// app/(routes)/bag/BagRouteServer.tsx
+import { getBagData } from "../../actions";
 import db from "../../../lib/db";
-import PaymentPage from "../../components/paymentpage";
-import Footer from "@/app/components/newcomponents/footer";
-
 import { redirect } from "next/navigation";
+import BagClient from "./bagclient";
 
-
-
-
-export default async function BagRoute() {
-  noStore();
-  const user = await db.user.current(); 
+export default async function BagRouteServer() {
+  const user = await db.user.current();
 
   if (!user) {
     redirect("/auth/signin");
   }
 
-  const cart: Cart | null = await redis.get(`cart-${user.id}`);
+  const bagData = await getBagData(user.id);
 
-  let totalPrice = 0;
-  let originalprice = 0;
-
-cart?.items.forEach((item) => {
-  totalPrice += item.discountprice * Number(item.quantity);
-  originalprice+= item.originalprice * Number(item.quantity);
-});
-
-const cartItems: Array<newcart> = cart?.items?.map((item) => ({
-  id: item.id ,
-  imageString: item.imageString ,
-  name: item.name,
-  color: item.color,
-  discountprice: item.discountprice,
-  originalprice: item.originalprice,
-  discountpercent: Math.round(((item.originalprice - item.discountprice )/ item.originalprice) * 100),
-  quantity: item.quantity,
-})) || [];
-
-  return (
-    <div className="p-4 h-full font-glancyr">
-    
-             <PaymentPage originalprice={originalprice} totalPrice={totalPrice} cartItems={cartItems} />
-             <Footer/>
-
-            </div>
-          
-  );
+  return <BagClient data={bagData} />;
 }
