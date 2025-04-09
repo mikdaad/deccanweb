@@ -25,16 +25,42 @@ export async function POST(req: NextRequest) {
     mobileNumber=user.phoneno;
 
   try {
-    const { amount, mobileNumber,cartItems } = await req.json();
-    const transactionId = `TXN_${Date.now()}`;
+    const { amount, transactionId ,cartItems,paymentMethod } = await req.json();
+
+    if(paymentMethod==="cod"){
+      await db.$transaction(
+        cartItems.map((item: newcart) =>
+          db.order.create({
+            data: {
+              userId,
+              transactionId,
+              amount,
+              status: "SUCCESS",
+              itemid: item.id,
+              itemimage: item.imageString,
+              itemname: item.name,
+              itemquantity: item.quantity,
+              itemcolor: item.color,
+              paymentmode:paymentMethod ,
+            },
+          })
+        )
+      );
+      return NextResponse.json({ redirectUrl: "/payment/success", success: true });    
+      
+    }
+    if (!amount || !transactionId || !cartItems || !paymentMethod) {
+      return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
+    }
+    
     const payload = {
       merchantId: MERCHANT_ID,
       merchantTransactionId: transactionId,
       merchantUserId: userId,
       amount: amount * 100, // Convert to paisa
-      redirectUrl: `https://terrific.fit/api/payment/callback/${transactionId}`,
+      redirectUrl: `https://localhost:3000/api/payment/callback/${transactionId}`,
       redirectMode: "REDIRECT",
-      callbackUrl: `https://terrific.fit/api/payment/callback/${transactionId}`,
+      callbackUrl: `https://localhost:3000/api/payment/callback/${transactionId}`,
       mobileNumber,
       paymentInstrument: {
         type: "PAY_PAGE",
@@ -70,7 +96,7 @@ export async function POST(req: NextRequest) {
             itemname: item.name,
             itemquantity: item.quantity,
             itemcolor: item.color,
-            
+            paymentmode:paymentMethod ,
           },
         })
       )
@@ -78,6 +104,7 @@ export async function POST(req: NextRequest) {
     
     return NextResponse.json(data);
   } catch (error) {
+    console.error("Error initiating payment:", error);
     return NextResponse.json({ error: error }, { status: 500 });
   }
 }

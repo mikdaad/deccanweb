@@ -8,6 +8,10 @@ import CartProgress from "@/app/components/newcomponents/cartprogress";
 import ShippingAddressForm from "@/app/components/newcomponents/shippingadressform";
 import PricingDetails from "@/app/components/newcomponents/pricingdetails";
 import { Cart, newcart } from "@/app/lib/interfaces";
+import ShippingAddress from "@/app/components/newcomponents/finalshippingaddress";
+import ProductCard from "@/app/components/newcomponents/summaryproductcard";
+import PaymentOptions from "@/app/components/newcomponents/paymentoptions";
+import OrderConfirmation from "@/app/components/newcomponents/thankyou";
 
 interface Props {
   data: {
@@ -21,6 +25,7 @@ interface Props {
 
 export default function BagClient({ data }: Props) {
   const [step, setStep] = useState(1);
+  const [txnid, setTxnid] = useState("");
 
   return (
     <div className="p-4 h-full font-glancyr">
@@ -66,6 +71,25 @@ export default function BagClient({ data }: Props) {
       </div>
 
       }
+
+{step===3 &&
+<div className="flex flex-row gap-x-10">
+      <ShippingAddress  setstep={setStep} step={step}/>
+      <ProductCard cartItems={data.cartItems}  />
+      </div>
+}
+
+{step===4 &&
+<div className="flex flex-row gap-x-10 ">
+      <PaymentOptions setstep={setStep} step={step} totalPrice={data.totalPrice} cartItems={data.cartItems} txnid={txnid} setTxnid={setTxnid}/>
+      <ProductCard cartItems={data.cartItems}  />
+      </div>
+}
+{step===5 &&
+      <OrderConfirmation orderId={txnid} />
+}
+
+
 
 
 

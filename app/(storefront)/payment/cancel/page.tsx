@@ -19,7 +19,7 @@ export default function CancelRoute() {
               Please try again
             </p>
             <p className="mt-2 text-sm text-muted-foreground">
-            if you are facing any issues contact - +91 9876543210 , terrificmaile@gmail.com
+            if you are facing any issues contact - +91 9876543210 , deccansweb@gmail.com
             </p>
 
 

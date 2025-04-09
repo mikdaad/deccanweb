@@ -5,7 +5,7 @@ import axios from "axios";
 
 const prisma = new PrismaClient();
 
-const PHONE_PE_HOST_URL = process.env.PHONE_PE_HOST_URL!;
+
 const MERCHANT_ID = "SANDBOXTESTMID";
 const SALT_KEY = "51778fc0-016b-48fe-b509-108277bfa5e2";
 const SALT_INDEX = "1";
@@ -54,7 +54,7 @@ export async function GET(req: NextRequest, { params }: { params: { txid: string
       data: { status },
     });
 
-    return NextResponse.redirect(new URL("/payment/success", req.nextUrl));
+    return NextResponse.redirect(new URL(`/payment/success?txnid=${merchantTransactionId}`, req.nextUrl));
   } catch (error) {
     console.error("Error validating payment:", error);
     return NextResponse.redirect(new URL("/payment/cancel", req.nextUrl));

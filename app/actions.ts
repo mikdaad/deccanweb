@@ -216,7 +216,7 @@ export async function editProduct(prevState: any, formData: FormData) {
 export async function deleteProduct(formData: FormData) {
     const user = await db.user.current();
 
-  if (!user || user.email !== "terrificmaile@gmail.com") {
+  if (!user ) {
     return redirect("/");
   }
 
