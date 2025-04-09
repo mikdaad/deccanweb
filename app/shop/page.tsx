@@ -1,40 +1,65 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FilterCard } from '@/app/components/newcomponents/filtercard';
 import HeaderNavigation from "@/app/components/newcomponents/homeheader";
 import ProductList from '../components/storefront/Productlist2';
 import Footer from "@/app/components/newcomponents/footer";
 import { Subcategory } from '@prisma/client';
+import { useSearchParams, useRouter } from 'next/navigation';
 
 export default function Shop() {
-  const [selectedCategory, setSelectedCategory] = useState<string>("leathersofa");
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
+  const subcategory = searchParams.get("subcategory") || "";
+  const categoryParam = searchParams.get("category") || "";
+  const ispremium = searchParams.get("ispremium") || "";
+  const minPriceParam = searchParams.get("minPrice") || "999";
+  const maxPriceParam = searchParams.get("maxPrice") || "9999";
+
+  const [priceRange, setPriceRange] = useState({ min: parseInt(minPriceParam), max: parseInt(maxPriceParam) });
 
   const [filters, setFilters] = useState({
-    price: { min: 999, max: 9999 },
-    category: selectedCategory,
+    price: priceRange,
+    category: subcategory,
   });
+
+  // 🔁 Whenever filters change, update priceRange and URL
+  useEffect(() => {
+    setPriceRange(filters.price);
+
+    const params = new URLSearchParams(window.location.search);
+
+    // Update URL parameters
+    params.set("minPrice", filters.price.min.toString());
+    params.set("maxPrice", filters.price.max.toString());
+    params.set("subcategory", filters.category);
+
+    // Push new URL (without reloading the page)
+    const newUrl = `${window.location.pathname}?${params.toString()}`;
+    window.history.replaceState({}, '', newUrl);
+  }, [filters]);
 
   return (
     <>
-      {/* Header */}
       <header className="w-full shadow-md bg-transparent mb-0">
         <HeaderNavigation />
       </header>
 
-      {/* Main Layout */}
-      <main className="flex flex-col lg:flex-row gap-8    min-h-screen">
-        {/* Filter Sidebar */}
+      <main className="flex flex-col lg:flex-row gap-8 min-h-screen">
         <div className="w-[412px] ml-4">
-          <FilterCard setFilters={setFilters} />
+          <FilterCard setFilters={setFilters} initialCategory={subcategory}/>
         </div>
-        {/* Product List */}
         <section className="flex-1 mt-10 lg:mt-0 space-y-12">
-          <ProductList subcategory={filters.category as Subcategory} priceRange={filters.price}   />
-          <ProductList subcategory={filters.category as Subcategory} priceRange={filters.price}   />
+          <ProductList
+            subcategory={subcategory as Subcategory}
+            category={filters.category}
+            ispremium={ispremium}
+            priceRange={priceRange}
+          />
         </section>
       </main>
 
-      {/* Footer */}
       <Footer />
     </>
   );

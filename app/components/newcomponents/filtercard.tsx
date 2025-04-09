@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { FilterCategory } from "./filtercategory";
 import { CustomButton } from "./custombutton";
 import SliderComponent from "./moneyslider";
@@ -9,11 +9,12 @@ interface FilterCardProps {
     price: { min: number; max: number };
     category: string;
   }>>;
+  initialCategory: string; 
 }
 
-export const FilterCard: React.FC<FilterCardProps> = ({ setFilters }) => {
+export const FilterCard: React.FC<FilterCardProps> = ({ setFilters , initialCategory }) => {
   const [childData, setChildData] = useState<number>(9999);
-  const [selectedCategory, setSelectedCategory] = useState<string>("leathersofa");
+  const [selectedCategory, setSelectedCategory] =  useState<string>(initialCategory);
 
   const handleChildData = (dataFromChild: number) => {
     setChildData(dataFromChild);
@@ -23,17 +24,11 @@ export const FilterCard: React.FC<FilterCardProps> = ({ setFilters }) => {
     setSelectedCategory(category);
   };
 
-  // ✅ Automatically apply filters whenever selectedCategory or childData changes
-  useEffect(() => {
+  const handleApply = () => {
     setFilters({
       price: { min: 999, max: childData },
       category: selectedCategory,
     });
-  }, [selectedCategory, childData, setFilters]);
-
-  const handleApply = () => {
-    // Send filter data to parent
-    
   };
 
   return (
@@ -47,10 +42,10 @@ export const FilterCard: React.FC<FilterCardProps> = ({ setFilters }) => {
             <SliderComponent valb={childData} onDataUpdate={handleChildData} minm={999} />
           </div>
         </div>
-        
-        <div className="whitespace-nowrap">
-              <CustomButton onClick={handleApply}>Apply</CustomButton>
-            </div>
+
+        <div className="whitespace-nowrap my-4">
+          <CustomButton onClick={handleApply}>Apply</CustomButton>
+        </div>
 
         <FilterCategory
           name="Premium Sofa"
