@@ -21,6 +21,14 @@ async function getData(productId: string) {
     discountprice: Decimal.isDecimal(data.discountprice) ? data.discountprice.toNumber() : data.discountprice,
     originalprice: Decimal.isDecimal(data.originalprice) ? data.originalprice.toNumber() : data.originalprice,
     stars: Decimal.isDecimal(data.stars) ? data.stars.toNumber() : data.stars,
+    dimensions: data.dimensions ?? "", 
+    // Ensure dimensions is a string
+    weight: data.weight ?? "", 
+    warranty: data.warranty ?? "",
+    material: data.material ?? "", // Ensure material is a string
+    longdescription: data.longdescription ?? "", // Ensure longdescription is a string
+    
+    // Ensure weight is a string
   };
   
   return formattedData;
