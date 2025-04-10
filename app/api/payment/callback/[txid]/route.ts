@@ -50,7 +50,7 @@ export async function GET(req: NextRequest, { params }: { params: { txid: string
 
     // ✅ Update order status in the database
     await prisma.order.update({
-      where: { transactionId: merchantTransactionId },
+      where: { id: merchantTransactionId },
       data: { status },
     });
 
