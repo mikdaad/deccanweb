@@ -42,6 +42,8 @@ const cartItems: Array<newcart> = cart?.items?.map((item) => ({
   color: item.color,
   discountprice: item.discountprice,
   quantity: item.quantity,
+  originalprice:item.originalprice,
+  discountpercent:23,
 })) || [];
 
   return (
