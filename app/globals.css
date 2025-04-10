@@ -104,6 +104,40 @@
 @font-face {
   font-family: 'Blauer Nue';
   src: url('/fonts/BlauerNue-Bold.otf') format('opentype');
-  font-weight: Bold;
+  font-weight: bold; /* Corrected to lowercase 'bold' */
   font-style: normal;
 }
+
+@font-face {
+  font-family: 'Blauer Nue';
+  src: url('/fonts/BlauerNue-Thin.otf') format('opentype');
+  font-weight: 100; /* Using numerical equivalent for 'thin' */
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Blauer Nue';
+  src: url('/fonts/BlauerNue-SemiBold.otf') format('opentype');
+  font-weight: 600; /* Using numerical equivalent for 'semibold' */
+  font-style: normal;
+}
+
+
+@font-face {
+  font-family: 'Blauer Nue';
+  src: url('/fonts/BlauerNue-Medium.otf') format('opentype');
+  font-weight: 500; /* Using numerical equivalent for 'medium' */
+  font-style: normal;
+}
+
+
+@font-face {
+  font-family: 'Blauer Nue';
+  src: url('/fonts/BlauerNue-ExtraBold.otf') format('opentype');
+  font-weight: 800; /* Using numerical equivalent for 'extrabold' */
+  font-style: normal;
+}
+
+
+
+

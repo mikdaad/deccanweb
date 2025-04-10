@@ -71,7 +71,7 @@ const Index = () => {
                     Login to Your Account
                   </h1>
                   <p className="text-xl md:text-2xl font-light text-center md:text-left">
-                    Don't have an account?{' '}
+                    Don`&apos;`t have an account?{' '}
                     <button
                       className="font-normal text-[#E8AF52] hover:underline"
                       onClick={toggleForm}

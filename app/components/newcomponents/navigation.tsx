@@ -2,9 +2,8 @@
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { useState ,useRef,useEffect} from "react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Search, ShoppingBag } from "lucide-react";
-import UserCart from "../storefront/usercart";
+import { UserCart } from "../storefront/usercart";
 import { usePathname } from "next/navigation";
 import { Input } from "../ui/input";
 
@@ -56,7 +55,7 @@ const Navigation = ({ className }: NavigationProps) => {
   return (
     <nav
     className={cn(
-      "flex items-center gap-[40px_100px] text-base text-white font-medium whitespace-nowrap text-center uppercase leading-loose flex-wrap font-['Blauer_Nue']",
+      "flex items-center gap-[40px_100px] text-base text-white whitespace-nowrap text-center uppercase leading-loose flex-wrap font-blauer-nue font- ",
       className
     )}
   >
@@ -132,7 +131,7 @@ className="focus:outline-none hover:opacity-80 transition-opacity mt-2"
 
 </button>
 </Link>
-<UserCart/>
+<UserCart name="mm" email="mikxplode@gmail.com" userImage="profilentyped image"/>
 
 </div>
 

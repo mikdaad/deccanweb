@@ -22,7 +22,7 @@ const config = {
     extend: {
       fontFamily: {
         glancyr: ['Glancyr', ...fontFamily.sans],
-        blauer: ['Blauer', 'sans-serif'],
+        'blauer-nue': ['Blauer Nue', 'sans-serif'], // Updated font family name
         inter: ['Inter', ...fontFamily.sans],
         serena: ['Serena', 'sans-serif'],
       },
@@ -79,6 +79,13 @@ const config = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+      },
+      fontWeight: { // Add font weight configuration
+        thin: '100',
+        medium: '500',
+        semibold: '600',
+        bold: '700',
+        extrabold: '800',
       },
     },
   },

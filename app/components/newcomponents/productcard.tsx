@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { newcart } from "@/app/lib/interfaces";
 import { delItem , moveToWishlist , Incdeccart} from "@/app/actions";
+import Link from "next/link";
 
 interface ProductCardprops {
   cartItems: newcart[];
@@ -26,8 +27,8 @@ export default function ProductCard({ cartItems }: ProductCardprops) {
   return (
     <div>
       {cartItems.map((item) => (
-
-<div className="justify-center border border-[color:var(--Button-color,#E8AF52)] shadow-[0px_1px_0px_0px_rgba(255,255,255,0.08)_inset] bg-[rgba(255,255,255,0.02)] grow overflow-hidden w-full p-[25px] rounded-2xl border-solid max-md:max-w-full max-md:mt-[22px] max-md:px-5">
+ <div key={item.id} >
+<div  className="justify-center border border-[color:var(--Button-color,#E8AF52)] shadow-[0px_1px_0px_0px_rgba(255,255,255,0.08)_inset] bg-[rgba(255,255,255,0.02)] grow overflow-hidden w-full p-[25px] rounded-2xl border-solid max-md:max-w-full max-md:mt-[22px] max-md:px-5">
 <div className="gap-5 flex max-md:flex-col max-md:items-stretch">
   <div className="w-[24%] max-md:w-full max-md:ml-0">
     <div className="flex flex-col items-stretch text-xs text-white font-normal uppercase leading-[26px] mt-[43px] max-md:mt-10">
@@ -161,7 +162,7 @@ export default function ProductCard({ cartItems }: ProductCardprops) {
   </div>
 </div>
 </div>
-
+</div>
        
       ))}
       </div>

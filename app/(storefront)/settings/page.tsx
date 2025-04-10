@@ -94,20 +94,7 @@ export default function UpdateUserForm() {
   return (
     <div>
     <form onSubmit={handleSubmit(onSubmit)} className="max-w-xl mx-auto font-glancyr">
-      <div className="flex items-center ">
-
-    <Button  className="max-w-xl mx-auto w-[40%] m-3 ml-36 bg-yellow-500 gap-x-4">
-     <Link href="/myorders">
-    <div className="flex flex-row gap-2">
-     <>
-            <ShoppingBag className=" h-5 w-5 m-2" />
-          </> 
-          <p className="mt-2 m-1 mr-2">My Orders</p>
-          </div>
-          </Link>
-    
-     </Button>
-     </div>
+      
    
       <div className="flex items-center gap-x-4">
         <Button variant="outline" size="icon" asChild>
