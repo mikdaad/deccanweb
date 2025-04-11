@@ -9,7 +9,7 @@ const StatItem: React.FC<StatItemProps> = ({ value, label }) => (
   <div className="self-stretch my-auto ">
     {value}
     <br />
-    <span className="font-light text-base text-[11px]">{label}</span>
+    <span className="font-light  text-[14px]">{label}</span>
   </div>
 );
 

@@ -8,6 +8,7 @@ import { Vectorbanner } from '../components/buildercomponents/home/vectorbanner'
 import Footer from '../components/newcomponents/footer';
 import HeroSection from '../components/newcomponents/Herosection';
 import styles from './homestyles.module.css'; // Ensure this CSS module file exists and paths are correct
+import Link from 'next/link';
 
 // Optional: Initialize font if using Next.js Font Optimization
 // const inter = Inter({ subsets: ["latin"] });
@@ -88,11 +89,11 @@ function App() {
 
           {/* Content Row 2: View Products Button and Stats Card */}
           {/* Added relative and z-10 to ensure this content is also above the z-0 ellipses */}
-          <div className='flex flex-row justify-between items-center relative z-10 px-24 py-8'> {/* Added padding, items-center */}
+          <div className='flex flex-row justify-between items-center relative z-10 px-24 pb-40'> {/* Added padding, items-center */}
 
             {/* Left Side: View Products Button */}
             <div className={`${styles.Frame_5408_176_206}`}>
-              <span className={styles.ViewProducts_176_207}>View Products</span>
+            <Link href="/shop"> <span className={styles.ViewProducts_176_207}>View Products</span> </Link>
               {/* Assuming Frame_5408... and ViewProducts... provide button styling */}
             </div>
 

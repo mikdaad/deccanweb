@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { useState ,useRef,useEffect} from "react";
 import { Search, ShoppingBag } from "lucide-react";
-import { UserCart } from "../storefront/usercart";
+import  UserCart  from "../storefront/usercart";
 import { usePathname } from "next/navigation";
 import { Input } from "../ui/input";
 
@@ -131,11 +131,12 @@ className="focus:outline-none hover:opacity-80 transition-opacity mt-2"
 
 </button>
 </Link>
-<UserCart name="mm" email="mikxplode@gmail.com" userImage="profilentyped image"/>
+
+
 
 </div>
 
-
+<UserCart />
 
       </div>
     </nav>
