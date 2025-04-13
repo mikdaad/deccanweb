@@ -73,14 +73,18 @@ export default function BagClient({ data }: Props) {
       }
 
 {step===3 &&
-<div className="flex flex-row gap-x-10">
+<div className="flex flex-col">
+
+<CartProgress currentStep={3} />
+<div className="flex flex-col lg:flex-row  gap-x-10">
+
       <ShippingAddress  setstep={setStep} step={step}/>
       <ProductCard cartItems={data.cartItems}  />
-      </div>
+      </div>  </div>
 }
 
 {step===4 &&
-<div className="flex flex-row gap-x-10 ">
+<div className="flex flex-col lg:flex-row gap-x-10 ">
       <PaymentOptions setstep={setStep} step={step} totalPrice={data.totalPrice} cartItems={data.cartItems} txnid={txnid} setTxnid={setTxnid}/>
       <ProductCard cartItems={data.cartItems}  />
       </div>
