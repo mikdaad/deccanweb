@@ -81,7 +81,7 @@ sophistication and warmth to your home
 <SocialIconsBar
          iconClassName="w-[85px] h-[233px] mt-8 lg:mt-0 lg:w-[105px] lg:h-[333px]"
       /> </div>
-<div className='block lg:hidden mr-6'><StatsCard /></div>\
+<div className='block lg:hidden mr-5 mt-3'><StatsCard /></div>\
 
 
             </div>
@@ -101,7 +101,7 @@ sophistication and warmth to your home
 
           {/* Content Row 2: View Products Button and Stats Card */}
           {/* Added relative and z-10 to ensure this content is also above the z-0 ellipses */}
-          <div className='flex flex-row justify-between items-center relative z-10 px-24 pb-40'> {/* Added padding, items-center */}
+          <div className='flex flex-row justify-between items-center relative z-10 px-24 pb-0 lg:pb-40'> {/* Added padding, items-center */}
 
             {/* Left Side: View Products Button */}
             
@@ -127,7 +127,7 @@ sophistication and warmth to your home
       {/* This content is outside the clipping container and will not have the ellipses behind it */}
       <div>
         <Banner />
-        <InfiniteSlider gap={24} reverse>  <Vectorbanner /> </InfiniteSlider>
+        <InfiniteSlider gap={24} >  <Vectorbanner /> </InfiniteSlider>
 
    
 

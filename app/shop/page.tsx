@@ -23,6 +23,7 @@ export default function Shop() {
     price: priceRange,
     category: subcategory,
   });
+  
 
   // 🔁 Whenever filters change, update priceRange and URL
   useEffect(() => {
@@ -46,7 +47,7 @@ export default function Shop() {
         <HeaderNavigation />
       </header>
 
-      <main className="flex flex-col lg:flex-row gap-8 min-h-screen">
+      <main className="flex flex-col lg:flex-row gap-8 mt-4 min-h-screen">
         <div className="w-[412px] ml-4">
           <FilterCard setFilters={setFilters} initialCategory={subcategory}/>
         </div>

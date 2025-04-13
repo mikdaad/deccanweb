@@ -69,15 +69,22 @@ export function ProductCard({ item, className }: ProductCardProps) {
     {/* Name and Wishlist */}
     <div className="flex justify-between items-center mb-1">
       <div className="text-sm md:text-md font-extrabold leading-snug font-['Blauer_Nue']">
-        {item.name}
+      {item.name.length > 40
+        ? `${item.name.slice(0, 40)}...`
+        : item.name}
       </div>
       <Addtowishlistbtn onAddToWishlist={addProductToWishlist} />
     </div>
 
     {/* Description */}
-    <p className="text-xs text-white/60 mt-2 font-['Blauer_Nue']">
+    <p className="hidden lg:block text-xs text-white/60 mt-2 font-['Blauer_Nue']">
       {item.description.length > 90
         ? `${item.description.slice(0, 90)}...`
+        : item.description}
+    </p>
+    <p className="block lg:hidden text-xs text-white/60 mt-2 font-['Blauer_Nue']">
+      {item.description.length > 20
+        ? `${item.description.slice(0, 20)}...`
         : item.description}
     </p>
 
@@ -86,10 +93,10 @@ export function ProductCard({ item, className }: ProductCardProps) {
       <div>
         {/* Colors */}
         <div className="flex gap-1">
-          <div className="w-4 h-4 bg-[#f9bf00] rounded-full" />
-          <div className="w-4 h-4 bg-[#0a5d5d] rounded-full" />
-          <div className="w-4 h-4 bg-[#db0000] rounded-full" />
-          <div className="w-4 h-4 bg-gray-500 rounded-full" />
+          <div className="w-3 h-3 lg:w-4 lg:h-4 bg-[#f9bf00] rounded-full" />
+          <div className="w-3 h-3 lg:w-4 lg:h-4 bg-[#0a5d5d] rounded-full" />
+          <div className="w-3 h-3 lg:w-4 lg:h-4 bg-[#db0000] rounded-full" />
+          <div className="w-3 h-3 lg:w-4 lg:h-4 bg-gray-500 rounded-full" />
         </div>
 
         {/* Price */}
@@ -101,12 +108,21 @@ export function ProductCard({ item, className }: ProductCardProps) {
             ₹{item.discountprice}
           </span>
         </div>
+         {/* Cart Button */}
+      <button
+        onClick={addProductToShoppingCart}
+        className="block lg:hidden w-full flex items-center justify-center border border-[#e8af52] mt-2 rounded-lg hover:bg-[#e8af52]/10 transition p-2 px-8"
+      >
+        <span className="text-white text-sm font-medium font-['Blauer_Nue']">
+          Add to Cart
+        </span>
+      </button>
       </div>
 
       {/* Cart Button */}
       <button
         onClick={addProductToShoppingCart}
-        className="w-fit flex items-center justify-center border border-[#e8af52] rounded-lg hover:bg-[#e8af52]/10 transition p-2"
+        className="hidden lg:block w-fit flex items-center justify-center border border-[#e8af52] rounded-lg hover:bg-[#e8af52]/10 transition p-2"
       >
         <span className="text-white text-sm font-medium font-['Blauer_Nue']">
           Add to Cart
