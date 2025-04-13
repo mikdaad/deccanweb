@@ -100,7 +100,7 @@ export default function ProductList({ subcategory, category , priceRange, isprem
   }, [subcategory, category, priceRange, ispremium]);
 
   return (
-    <div className="grid grid-cols-2  lg:grid-cols-4 gap-x-4">
+    <div className="grid grid-cols-2  lg:grid-cols-4 gap-x-4 gap-y-2">
 
       {loading ? (
         <div className="flex justify-center items-center ml-36">

@@ -61,6 +61,7 @@ background: radial-gradient(50% 50% at 50% 50%, rgba(233, 113, 2, 0.22) 0%, rgba
     display: inline-block;
   }
   
+
   .YourMostModernHomeWithOurProducts_176_223 {
     background: var(--text-grd, linear-gradient(0deg, #fff 0%, #e8af52 100%));
     -webkit-text-fill-color: transparent;
@@ -75,6 +76,7 @@ background: radial-gradient(50% 50% at 50% 50%, rgba(233, 113, 2, 0.22) 0%, rgba
     display: inline-block;
     margin-top: 30px;
   }
+  
   
   .Group_5369_176_226 {
     flex-shrink: 0;

@@ -5,17 +5,18 @@ import HeroContent from "./herocontent";
 const HeroSection: React.FC = () => {
   return (
     <section
-      className="w-[80%]  ml-[10%] my-5 border border-[color:var(--Button-color,#E8AF52)] shadow-[0px_1px_0px_0px_rgba(255,255,255,0.08)_inset] bg-[rgba(255,255,255,0.02)] flex flex-col justify-center px-2 py-[10px] rounded-2xl border-solid max-md:px-5 max-md:py-[100px]"
+      className="w-[90%] lg:w-full max-w-[1287px] mx-auto my-5 px-4 py-5 md:px-6 lg:px-10 rounded-2xl border border-[color:var(--Button-color,#E8AF52)] bg-[rgba(255,255,255,0.02)] shadow-[0px_1px_0px_0px_rgba(255,255,255,0.08)_inset]"
       aria-labelledby="hero-heading"
     >
-      <div className="w-full max-w-[1287px] mx-auto">
-        <div className="gap-5 flex max-md:flex-col max-md:items-stretch">
-          <div className="w-[30%]  ml-16 max-md:w-full max-md:ml-0">
-            <HeroImage />
-          </div>
-          <div className="w-[55%] ml-5 max-md:w-full max-md:ml-0">
-            <HeroContent />
-          </div>
+      <div className="flex flex-col md:flex-row gap-6 md:gap-8 items-center md:items-start">
+        {/* Image Block */}
+        <div className="w-full md:w-[40%] lg:w-[30%] md:ml-4">
+          <HeroImage />
+        </div>
+
+        {/* Content Block */}
+        <div className="w-full md:w-[60%] lg:w-[55%] md:ml-4">
+          <HeroContent />
         </div>
       </div>
     </section>

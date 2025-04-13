@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
+// Removed Image import unless you plan to switch later
 
 type Banner = {
   id: string;
@@ -11,71 +12,86 @@ type Banner = {
   subtext: string;
 };
 
+// Assuming 'Blauer Nue' is configured in tailwind.config.js
+// fontFamily: { blauer: ['"Blauer Nue"', 'sans-serif'] } -> use font-blauer
+
 export function Banner() {
   const [banners, setBanners] = useState<Banner[]>([
-    {
+     {
       id: "1",
       title: "Premium Sofa",
       imageString: "/banner/b1.png",
-      link: "?category=Sofa&ispremium=true", // Example query
+      link: "?category=Sofa&ispremium=true",
       subtext: "50+ Colors available",
     },
     {
       id: "2",
       title: "Home decor items",
       imageString: "/banner/b2.png",
-      link: "?category=Homedecor", // Example query
+      link: "?category=Homedecor",
       subtext: "100+ variety available",
     },
     {
       id: "3",
       title: "Premium Carpet",
       imageString: "/banner/b3.png",
-      link: "?category=Carpet&ispremium=true", // Example query
+      link: "?category=Carpet&ispremium=true",
       subtext: "100+ new designs available",
     },
     {
       id: "4",
       title: "Premium collection",
       imageString: "/banner/b4.png",
-      link: "?ispremium=true", // Example query
+      link: "?ispremium=true",
       subtext: "50+ items available",
     },
   ]);
 
   return (
-    <div className="grid grid-cols-2 gap-4 p-4 ml-[7%] my-5">
+    // Responsive Grid & Margin
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 md:ml-[7%] my-5">
       {banners.map((banner) => (
-        <Link key={banner.id} href={`/shop${banner.link}`} className="relative">
-          <div className="relative bg-gradient-to-r from-[#E8AF52] via-yellow-700 to-[#225043] hover:bg-gradient-to-l inset-3 p-[0.9px] text-white duration-300 hover:shadow-2xl hover:shadow-purple-600/30  rounded-[24px]  max-w-[589px] min-h-[282px]  text-base font-light space-y-10">
+        <Link key={banner.id} href={`/shop${banner.link}`} className="block group"> {/* Added group class */}
+
+          {/* Outer Div: Gradient border is created via its background and padding */}
+          {/* Added responsive min-height here */}
+          {/* Used p-[1px] for a thin border, adjust if needed */}
+          <div className="relative bg-gradient-to-r from-[#E8AF52] via-yellow-700 to-[#225043] group-hover:bg-gradient-to-l p-[1px] rounded-[24px] duration-300 hover:shadow-2xl hover:shadow-purple-600/30 max-w-[589px] min-h-[202px] md:min-h-[282px]"> {/* Adjusted min-height slightly for padding */}
+
+            {/* Inner Div: Content, BG Image, slightly smaller rounding */}
+            {/* Inherits size from parent, reveals border due to parent's padding */}
             <div
+              className="relative overflow-hidden rounded-[23px] min-h-[200px] md:min-h-[280px] flex flex-col justify-end bg-cover bg-center text-white" // text-white needed here
               style={{
                 backgroundImage: `linear-gradient(270deg, rgba(0, 0, 0, 0) 0%, #000000 99.15%), url('${banner.imageString}')`,
               }}
-              className="  bg-gradient-to-r from-[#E8AF52] via-yellow-700 to-[#225043] hover:bg-gradient-to-l inset-3 p-[2px] text-white duration-300 hover:shadow-2xl hover:shadow-purple-600/30  rounded-[24px]  m-0  max-w-[587px] min-h-[280px] text-base font-light "
             >
-              <div className="absolute bottom-4 m-8">
-                <div className="space-y-2">
-                  <div className="flex flex-row space-x-2 ">
-                    <h2 className="text-xl font-['Blauer_Nue'] font-semibold">{banner.title}</h2>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <g clipPath="url(#clip0_172_28)">
-                        <path d="M15 5L13.59 6.41L18.17 11H2V13H18.17L13.58 17.59L15 19L22 12L15 5Z" fill="white" />
+              {/* Text Block with responsive padding */}
+              <div className="relative z-10 p-4 md:p-8"> {/* z-10 ensures text is above bg */}
+                <div className="space-y-1 md:space-y-2">
+                  <div className="flex flex-row items-center space-x-2">
+                    {/* Responsive Title */}
+                    <h2 className="text-lg md:text-xl font-blauer font-semibold">{banner.title}</h2>
+                    {/* Responsive SVG */}
+                    <svg className="w-5 h-5 md:w-6 md:h-6 shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                       <g clipPath="url(#clip0_172_28_final)">
+                        <path d="M15 5L13.59 6.41L18.17 11H2V13H18.17L13.58 17.59L15 19L22 12L15 5Z" fill="currentColor" />
                       </g>
                       <defs>
-                        <clipPath id="clip0_172_28">
-                          <rect width="24" height="24" fill="white" />
+                        <clipPath id="clip0_172_28_final">
+                           <rect width="24" height="24" fill="white" />
                         </clipPath>
                       </defs>
                     </svg>
                   </div>
-                  <p className="text-sm opacity-90 font-thin font-['Blauer_Nue']">{banner.subtext}</p>
+                  {/* Responsive Subtext */}
+                  <p className="text-xs md:text-sm opacity-90 font-thin font-blauer">{banner.subtext}</p>
                 </div>
               </div>
-            </div>
-          </div>
+            </div> {/* End Inner Content Div */}
+          </div> {/* End Outer Gradient Border Div */}
         </Link>
       ))}
-    </div>
+    </div> // End Grid Container
   );
 }

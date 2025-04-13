@@ -1,42 +1,70 @@
+// src/components/StatsCard.tsx (Updated for responsive scaling)
 import React from "react";
+
+const Divider: React.FC<{ className?: string }> = ({ className = "" }) => (
+  <div
+    // Responsive Height: h-[40px] default (mobile), lg:h-[58px] larger
+    className={`self-stretch shrink-0 h-[45px] lg:h-[58px] my-auto border-r border-white/50 border-solid ${className}`}
+  />
+);
 
 type StatItemProps = {
   value: string;
   label: string;
+  className?: string;
 };
 
-const StatItem: React.FC<StatItemProps> = ({ value, label }) => (
-  <div className="self-stretch my-auto ">
-    {value}
-    <br />
-    <span className="font-light  text-[14px]">{label}</span>
+const StatItem: React.FC<StatItemProps> = ({ value, label, className = "" }) => (
+  // Kept text-center for alignment, removed width constraints for flexbox
+  <div className={`my-auto text-center ${className}`}>
+    {/* Responsive font size for the main value */}
+    <span className="block text-xl lg:text-3xl font-medium"> {/* Example sizes */}
+      {value}
+    </span>
+    {/* Responsive font size for the label */}
+    <span className="font-light text-[0.6rem] lg:text-sm">{label}</span>
   </div>
 );
 
-const Divider: React.FC = () => (
-  <div className="self-stretch w-0 shrink-0 h-[58px] my-auto border-white border-solid border-2" />
-);
+// Define stats data remains the same
+const statsData = [
+  { value: "100k", label: "Happy customers" },
+  { value: "1000+", label: "Products" },
+  { value: "99%", label: "Regular customers" },
+];
 
 const StatsCard: React.FC = () => {
   return (
-    <div className="bg-gradient-to-r from-[#E8AF52] via-yellow-700 to-[#225043] hover:bg-gradient-to-l inset-3 p-[2px] text-white duration-300 hover:shadow-2xl hover:shadow-purple-600/30  rounded-[24px]  m-20  max-w-[570px] text-base font-light ">
-    <div
-      className=" shadow-[0px_1px_0px_0px_rgba(255,255,255,0.08)_inset] inset-1 bg-black max-w-[570px] overflow-hidden pt-[0px] pb-[0px] px-0 rounded-[24px] border-solid"
-      aria-label="Price filter card"
-    >
-    <div className="  max-w-[570px] text-2xl text-white font-normal text-center leading-9   rounded-[24px] backdrop-blur-[27px] bg-[linear-gradient(180deg,rgba(255,255,255,0.10)_0.28%,rgba(0,0,0,0.00)_140.18%)]">
-    <div className="flex w-full flex-col items-stretch justify-center px-[37px] py-[46px] rounded-3xl max-md:max-w-full max-md:px-5 ">
-      <div className="flex items-center gap-10 justify-center">
-        <StatItem value="100k" label="Happy customers" />
-        <Divider />
-        <StatItem value="1000+" label="Products" />
-        <Divider />
-        <StatItem value="99%" label="Regular customers" />
+    // Responsive Margins: Smaller on mobile, larger on lg+
+    // Max-width is still useful for very large screens
+    <div className="bg-gradient-to-r from-[#E8AF52] via-yellow-700 to-[#225043] hover:bg-gradient-to-l inset-3 p-[2px] text-white duration-300 hover:shadow-2xl hover:shadow-purple-600/30 rounded-[24px] m-4 lg:m-10 max-w-[570px] mx-auto">
+      <div
+        // Inner rounding adjusted
+        className="shadow-[0px_1px_0px_0px_rgba(255,255,255,0.08)_inset] inset-1 bg-black max-w-full overflow-hidden pt-[0px] pb-[0px] px-0 rounded-[22px] border-solid"
+        aria-label="Price filter card"
+      >
+        <div
+          // Removed explicit font sizes here, let StatItem handle them
+          className="max-w-full text-white font-normal text-center leading-tight rounded-[22px] backdrop-blur-[27px] bg-[linear-gradient(180deg,rgba(255,255,255,0.10)_0.28%,rgba(0,0,0,0.00)_140.18%)]"
+        >
+          {/* Responsive Padding: Smaller on mobile, larger on lg+ */}
+          {/* Responsive Gap: Smaller on mobile, larger on lg+ */}
+          {/* Layout is always flex-row */}
+          <div className="flex w-full flex-row items-center justify-around gap-3 px-3 py-4 lg:gap-10 lg:px-[37px] lg:py-[46px] rounded-[22px]">
+            {/* Map over stats data */}
+            {statsData.map((stat, index) => (
+              <React.Fragment key={stat.label}>
+                {/* Render Stat Item (now with responsive text sizes) */}
+                <StatItem value={stat.value} label={stat.label} />
+
+                {/* Render vertical divider between items (always shown) */}
+                {index < statsData.length - 1 && <Divider />}
+              </React.Fragment>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-  </div>
-  </div>
   );
 };
 

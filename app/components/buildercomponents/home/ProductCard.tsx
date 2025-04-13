@@ -12,7 +12,6 @@ import {
 import { CldImage } from "next-cloudinary";
 import { Heart } from "lucide-react";
 import { addItem, addToWishlist } from "../../../actions";
-import PriceDisplay from "../../storefront/pricedisplay";
 import { Addtocartbtn,Addtowishlistbtn } from "../../SubmitButtons";
 
 
@@ -29,110 +28,94 @@ interface ProductCardProps {
   className?: string;
 }
 
+
+
+
+
+
+
+
 export function ProductCard({ item, className }: ProductCardProps) {
   const addProductToShoppingCart = () => addItem(item.id, 1, "");
   const addProductToWishlist = () => addToWishlist(item.id, 1, "");
 
   return (
-    <div className="bg-gradient-to-r from-[#E8AF52] via-yellow-700 to-[#225043] hover:bg-gradient-to-l  p-[1px] text-white duration-300 hover:shadow-2xl hover:shadow-purple-600/30  rounded-xl">
-    <article className={`w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl rounded-2xl shadow-md p-4 bg-[#242424] relative overflow-hidden ${className}   `}>
-      <Link href={`/product/${item.id}`} >
-      <div className="relative w-[240] h-[160px] rounded-t-2xl overflow-hidden">
-      <CldImage
-        src={item.images[0]}
-        alt={item.name}
-        // Request an image size from Cloudinary at least as large as the container
-        width={240}
-        height={160}
-        // You might keep or remove crop="fill" depending on preference.
-        // If removed, CSS object-cover handles everything.
-        // If kept, Cloudinary pre-crops, potentially saving bandwidth.
-        crop="fill" // Optional: Cloudinary can also crop server-side
+    <div className="bg-gradient-to-r from-[#E8AF52] via-yellow-700 to-[#225043] hover:bg-gradient-to-l p-[1px] rounded-2xl">
+     <article
+  className={cn(
+    "w-full h-[400px] lg:max-w-[470px] md:h-[433px]  bg-[#242424] relative rounded-2xl overflow-hidden shadow-md p-2",
+    className
+  )}
+>
+  {/* Glow */}
+  <div className="absolute w-[300px] md:w-[512px] h-[300px] md:h-[512px] left-[-40px] md:left-[-66px] top-[100px] md:top-[128px] opacity-10 bg-[radial-gradient(ellipse_50%_50%_at_50%_50%,_#F9BF00_0%,_rgba(252,_232,_3,_0)_100%)] blur-2xl md:blur-3xl z-0" />
 
-        // Sizes prop is less critical for fixed containers, but can still help browsers
-       // sizes="600px" // Simple size since the container is fixed
+  {/* Image */}
+  <Link href={`/product/${item.id}`}>
+    <CldImage
+      src={item.images[0]}
+      alt={item.name}
+      width={380}
+      height={330}
+      crop="fill"
+      gravity="center"
+      className="w-full h-[230px] md:h-[330px] object-contain pb-20 md:pb-32 rounded-xl"
+      loading="lazy"
+    />
+  </Link>
 
-        // Image Tag Styling:
-        // - w-full h-full: Make the image element fill the container div
-        // - object-cover: Scale the image while preserving aspect ratio,
-        //                 cropping to fill the container. This is the key part.
-        className="w-full h-full object-cover"
-        loading="lazy"
-      />
-    </div>
-      </Link>
-
-      
-      
-      <div className="w-[512px] h-[512px] left-[-66px] top-[128px] absolute opacity-10 bg-[radial-gradient(ellipse_50%_50%_at_50%_50%,_#F9BF00_0%,_rgba(252,_232,_3,_0)_100%)] blur-3xl z-0"></div>
-
-      <div className="p-4 text-white ">
-        <div className="flex justify-between items-center mb-2">
-          <h3 className="text-lg sm:text-xl font-bold">{item.name}</h3>
-          
-        <Addtowishlistbtn onAddToWishlist={addProductToWishlist}/>
-        </div>
-
-        <p className="text-sm text-opacity-60">{item.description}</p>
-
-        
-        <div className=" mt-2 mb-2">
-
-        <div className="flex flex-row justify-between">
-
-          <div className="flex flex-row justify-between">
-
-        <div>
-        <div className=" flex flex-row gap-2 mt-2">
-        <div className="w-4 h-4  bg-[#f9bf00] rounded-full"></div>
-        <div className="w-4 h-4   bg-[#0a5d5d] rounded-full"></div>
-        <div className="w-4 h-4  bg-[#db0000] rounded-full"></div>
-        <div className="w-4 h-4   bg-gray-500 rounded-full"></div>
-        </div>
-
-        <div className="flex items-center space-x-2 mt-2">
-          <span className="text-gray-400 line-through">₹{item.originalprice}</span>
-          <span className="text-white font-semibold">₹{item.discountprice}</span>
-        </div>
-
-        </div>
-
-              {/* Gradient Border */}
-  <div className="relative p-[0.8px] rounded-lg bg-gradient-to-r from-[#E8AF52] via-yellow-700 to-[#225043] z-10  ml-4">
-    {/* Button Content with Solid Background, Placed Below Border */}
-    <div className="relative flex justify-center items-center bg-[#242424] rounded-md px-5 py-1 z-0">
-      <span className="text-white text-sm font-medium">Add to Cart </span>
-    </div>
-   
-  </div>
-
-       
-
-   
-
-        </div>
-
-
-    
-
-        <div className="relative flex justify-center items-center cursor-pointer">
-  {/* Glow Effect Behind Everything */}
-  <div className="absolute w-[512px] h-[512px] left-[-66px] top-[128px] opacity-10 bg-[radial-gradient(ellipse_50%_50%_at_50%_50%,_#F9BF00_0%,_rgba(252,_232,_3,_0)_100%)] blur-3xl z-0"></div>
-
- 
-</div>
-
-    
-
-        </div>
-
-        </div>
-
-
-
-       
+  {/* Details */}
+  <div className="absolute left-4 top-[180px] md:top-[220px] right-4 text-white z-10">
+    {/* Name and Wishlist */}
+    <div className="flex justify-between items-center mb-1">
+      <div className="text-sm md:text-md font-extrabold leading-snug font-['Blauer_Nue']">
+        {item.name}
       </div>
-    </article>
+      <Addtowishlistbtn onAddToWishlist={addProductToWishlist} />
+    </div>
+
+    {/* Description */}
+    <p className="text-xs text-white/60 mt-2 font-['Blauer_Nue']">
+      {item.description.length > 90
+        ? `${item.description.slice(0, 90)}...`
+        : item.description}
+    </p>
+
+    {/* Color, Price, and Add to Cart */}
+    <div className="flex flex-row md:flex-row justify-between md:items-start mt-4 gap-4">
+      <div>
+        {/* Colors */}
+        <div className="flex gap-1">
+          <div className="w-4 h-4 bg-[#f9bf00] rounded-full" />
+          <div className="w-4 h-4 bg-[#0a5d5d] rounded-full" />
+          <div className="w-4 h-4 bg-[#db0000] rounded-full" />
+          <div className="w-4 h-4 bg-gray-500 rounded-full" />
+        </div>
+
+        {/* Price */}
+        <div className="flex items-center gap-1 mt-2 font-['Blauer_Nue']">
+          <span className="text-[#778082]/60 line-through text-xs font-light">
+            ₹{item.originalprice}
+          </span>
+          <span className="text-white text-sm font-semibold">
+            ₹{item.discountprice}
+          </span>
+        </div>
+      </div>
+
+      {/* Cart Button */}
+      <button
+        onClick={addProductToShoppingCart}
+        className="w-fit flex items-center justify-center border border-[#e8af52] rounded-lg hover:bg-[#e8af52]/10 transition p-2"
+      >
+        <span className="text-white text-sm font-medium font-['Blauer_Nue']">
+          Add to Cart
+        </span>
+      </button>
+    </div>
+  </div>
+</article>
+
     </div>
   );
 }
