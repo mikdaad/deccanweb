@@ -43,7 +43,7 @@ function App() {
 
           {/* Background Ellipses - Placed first, low z-index */}
           {/* These are now direct children of the clipping container */}
-          <div className={`${styles.Ellipse_2_176_209} absolute z-0 right-3/4 top-0 overflow-hidden pointer-events-none`}></div> {/* Adjusted position slightly, added pointer-events-none */}
+          <div className={`${styles.Ellipse_2_176_209} absolute z-0 right-3/4 bottom-[5%] overflow-hidden pointer-events-none`}></div> {/* Adjusted position slightly, added pointer-events-none */}
           <div className={`${styles.Ellipse_2_176_210} absolute z-0 bottom-1/4 left-3/4 overflow-hidden pointer-events-none`}></div> {/* Adjusted position slightly, added pointer-events-none */}
           {/* NOTE: Adjusted ellipse positions (top-0, bottom-1/4) as examples, fine-tune based on desired visual placement relative to the clipping container */}
 
@@ -59,7 +59,7 @@ function App() {
            
            <div className='flex flex-row '>
             <div className='flex flex-col'><span className="
-  inline-block  w-[240px] lg:w-[640px]  mt-[30px] font-['Serena'] text-[25px]  lg:text-[44px]  not-italic  font-normal leading-[121.6%] bg-gradient-to-t  from-white
+  inline-block  w-[240px] lg:w-[640px]  mt-[30px]  lg:mt-[85px] font-['Serena'] text-[25px]  lg:text-[44px]  not-italic  font-normal leading-[121.6%] bg-gradient-to-t  from-white
   to-[#e8af52]
   bg-clip-text     text-transparent  whitespace-normal overflow-visible      break-words           ">
   Your Most Modern Home With Our Products
@@ -77,9 +77,16 @@ Discover the artistry of luxury carpets and
 exquisite home décor, crafted to bring
 sophistication and warmth to your home
 </p>
+<div className="
+  inline-flex           items-center    w-44    lg:w-72   justify-center        gap-2.5            py-2   lg:py-4           px-4       lg:px-8                mt-2 lg:mt-5                  lg:max-h-max             rounded-xl            bg-[#e8af52]          shadow-[0_4px_32px_#e8af5299] ">
+ 
+ <Link href="/shop"> <span className=" inline-block      text-black        text-center       font-blauer-nue     text-xl  lg:text-2xl          font-normal       leading-normal    ">
+  View Products
+</span></Link>
+  </div>
 </div> 
 <SocialIconsBar
-         iconClassName="w-[85px] h-[233px] mt-8 lg:mt-0 lg:w-[105px] lg:h-[333px]"
+         iconClassName="w-[85px] h-[233px] mt-8 lg:mt-10 lg:ml-28 lg:mt-0 lg:w-[105px] lg:h-[333px]"
       /> </div>
 <div className='block lg:hidden mr-5 mt-3'><StatsCard /></div>\
 
@@ -106,16 +113,10 @@ sophistication and warmth to your home
             {/* Left Side: View Products Button */}
             
 
-            <div className="
-  inline-flex           items-center          justify-center        gap-2.5            py-2   lg:py-4           px-4       lg:px-8                mt-0 lg:mt-5                  lg:max-h-max             rounded-xl            bg-[#e8af52]          shadow-[0_4px_32px_#e8af5299] ">
- 
- <Link href="/shop"> <span className=" inline-block      text-black        text-center       font-blauer-nue     text-xl  lg:text-2xl          font-normal       leading-normal    ">
-  View Products
-</span></Link>
-  </div>
+            
 
             {/* Right Side: Stats Card Component */}
-            <div className='hidden lg:block'><StatsCard /></div>
+            <div className='absolute bottom-8 left-2/4 hidden lg:block'><StatsCard /></div>
 
           </div>
 
@@ -131,154 +132,138 @@ sophistication and warmth to your home
 
    
 
-    {/* --- Responsive Image Row 2 (Text Left / Image Right on Desktop) --- */}
-    {/* This single block handles both mobile and desktop layouts */}
-    <div className='
-      flex flex-col items-center          /* Mobile: Vertical stack, centered */
-      gap-6 my-6 px-4                   /* Mobile: Spacing */
-      lg:flex-row lg:justify-around       /* Desktop: Horizontal row, spaced out */
-      lg:items-center lg:gap-0 lg:my-10  /* Desktop: Alignment & spacing */
-    '>
+    {/* --- Row 1 (Desktop: Image Left / Text Right | Mobile: Image / Text) --- */}
+<div className='
+  flex flex-col items-center      /* Mobile: Vertical stack, centered */
+  gap-6 my-6 px-4                /* Mobile: Spacing */
+  lg:flex-row lg:justify-around  /* Desktop: Horizontal row, spaced out */
+  lg:items-center lg:gap-0 lg:my-10 /* Desktop: Alignment & spacing */
+'>
 
-{/* Image Block - Responsive Size & Order */}
-<div className="
-        relative w-full max-w-md        /* Mobile: Full width up to medium */
-        min-h-[250px] rounded-[12px] overflow-hidden
-        lg:w-auto lg:max-w-[589px]      /* Desktop: Auto width up to specific max */
-        lg:min-h-[365px] lg:flex-shrink-0 /* Desktop: Height & prevent shrinking */
-        lg:order-last                    /* Desktop: Ensure image block appears last */
-      ">
-        {/* Gradient border structure */}
-        <div className="bg-gradient-to-r from-[#E8AF52] via-yellow-700 to-[#225043] hover:bg-gradient-to-l rounded-[12px] p-[2px] text-white duration-300 hover:shadow-2xl hover:shadow-purple-600/30">
-          <div className='bg-black p-1 rounded-[10px]'>
-            <img
-              // NOTE: You had b5.png in the mobile example and b6.png in the desktop for Row 2.
-              // Make sure to use the correct image source for the row you intend. Let's assume b6.png is correct for Row 2.
-              src="/banner/b5.png"
-              alt="Heritage Image 2"
-              className="w-full h-full object-cover rounded-[9px] min-h-[240px] lg:min-h-[355px]"
-            />
-          </div>
-        </div>
+  {/* Image Block - Appears FIRST in source for Mobile layout */}
+  <div className="
+    relative w-full max-w-md      /* Mobile: Full width up to medium */
+    min-h-[250px] rounded-[12px] overflow-hidden
+    lg:w-auto lg:max-w-[589px]    /* Desktop: Auto width up to specific max */
+    lg:min-h-[365px] lg:flex-shrink-0 /* Desktop: Height & prevent shrinking */
+    /* No lg:order needed here, it stays first on desktop */
+    lg:mr-8                       /* Desktop: Add margin to the right of the image */
+  ">
+    {/* Gradient border structure */}
+    <div className="bg-gradient-to-r from-[#E8AF52] via-yellow-700 to-[#225043] hover:bg-gradient-to-l rounded-[12px] p-[2px] text-white duration-300 hover:shadow-2xl hover:shadow-purple-600/30">
+      <div className='bg-black p-1 rounded-[10px]'>
+        <img
+          src="/banner/b5.png" /* Image for the first row */
+          alt="Heritage Image 1"
+          className="w-full h-full object-cover rounded-[9px] min-h-[240px] lg:min-h-[355px]"
+        />
       </div>
-
-
-      {/* Text Block */}
-      {/* Controls width, alignment, and order based on screen size */}
-      <div className='
-        flex flex-col w-full max-w-md     /* Mobile: Full width up to medium, centered content */
-        items-center text-center
-        lg:max-w-[45%] lg:items-start     /* Desktop: Takes 45% width, align items left */
-        lg:text-left lg:mr-8             /* Desktop: Align text left, add right margin */
-        lg:order-first                   /* Desktop: Ensure text block appears first */
-      '>
-
-        {/* Title Span - Responsive Font & Wrapping */}
-        <span className="
-          block break-words             /* Handles wrapping */
-          font-blauer-nue             /* Custom font (ensure configured) */
-          text-2xl leading-tight        /* Mobile text size */
-          lg:text-4xl lg:leading-[44px] /* Desktop text size */
-          not-italic font-medium
-          text-transparent bg-clip-text /* Gradient text effect */
-          bg-gradient-to-t from-white to-[#e8af52]
-          w-full mb-2                   /* Use parent width, margin bottom */
-        ">
-          Experience the Perfect Blend of Heritage
-        </span>
-
-        {/* Body Text Span - Responsive Font & Wrapping */}
-        <span className="
-          block break-words             /* Handles wrapping */
-          font-blauer-nue             /* Custom font (ensure configured) */
-          text-sm leading-6             /* Mobile text size */
-          lg:text-base lg:leading-6     /* Desktop text size */
-          font-normal
-          text-transparent bg-clip-text /* Gradient text effect */
-          bg-gradient-to-r from-[#e8af52] to-[#ffffffe0] /* Different gradient */
-          w-full                        /* Use parent width */
-        ">
-          Experience the perfect fusion of tradition and modernity with the us. Add a touch of opulence to your home and let your décor tell a story of elegance. your home and let your décor tell a story of elegance.your home and let your décor tell a story of elegance.
-        </span>
-      </div>
-
-      
     </div>
+  </div>
 
+  {/* Text Block - Appears SECOND in source for Mobile layout */}
+  <div className='
+    flex flex-col w-full max-w-md    /* Mobile: Full width up to medium, centered content */
+    items-center text-center
+    lg:max-w-[45%] lg:items-start   /* Desktop: Takes 45% width, align items left */
+    lg:text-left                   /* Desktop: Align text left */
+    /* No lg:order needed here, it stays second on desktop */
+  '>
+    {/* Title Span */}
+    <span className="
+      block break-words
+      font-blauer-nue
+      text-2xl leading-tight         /* Mobile text size */
+      lg:text-4xl lg:leading-[44px]  /* Desktop text size */
+      not-italic font-medium
+      text-transparent bg-clip-text  /* Gradient text effect */
+      bg-gradient-to-t from-white to-[#e8af52]
+      w-full mb-2
+    ">
+      Experience the Perfect Blend of Heritage {/* Example different title */}
+    </span>
 
+    {/* Body Text Span */}
+    <span className="
+      block break-words
+      font-blauer-nue
+      text-sm leading-6              /* Mobile text size */
+      lg:text-base lg:leading-6      /* Desktop text size */
+      font-normal
+      text-transparent bg-clip-text  /* Gradient text effect */
+      bg-gradient-to-r from-[#e8af52] to-[#ffffffe0]
+      w-full
+    ">
+        Experience the perfect fusion of tradition and modernity with us. Add a touch of opulence to your home and let your décor tell a story of elegance. Your home and let your décor tell a story of elegance.
+    </span>
+  </div>
+</div>
 
+{/* --- Row 2 (Desktop: Text Left / Image Right | Mobile: Image / Text) --- */}
+<div className='
+  flex flex-col items-center      /* Mobile: Vertical stack, centered */
+  gap-6 my-6 px-4                /* Mobile: Spacing */
+  lg:flex-row lg:justify-around  /* Desktop: Horizontal row, spaced out */
+  lg:items-center lg:gap-0 lg:my-10 /* Desktop: Alignment & spacing */
+'>
 
-    {/* --- Responsive Image Row 2 (Text Left / Image Right on Desktop) --- */}
-    {/* This single block handles both mobile and desktop layouts */}
-    <div className='
-      flex flex-col items-center          /* Mobile: Vertical stack, centered */
-      gap-6 my-6 px-4                   /* Mobile: Spacing */
-      lg:flex-row lg:justify-around       /* Desktop: Horizontal row, spaced out */
-      lg:items-center lg:gap-0 lg:my-10  /* Desktop: Alignment & spacing */
-    '>
-
-      {/* Text Block */}
-      {/* Controls width, alignment, and order based on screen size */}
-      <div className='
-        flex flex-col w-full max-w-md     /* Mobile: Full width up to medium, centered content */
-        items-center text-center
-        lg:max-w-[45%] lg:items-start     /* Desktop: Takes 45% width, align items left */
-        lg:text-left lg:mr-8             /* Desktop: Align text left, add right margin */
-        lg:order-first                   /* Desktop: Ensure text block appears first */
-      '>
-
-        {/* Title Span - Responsive Font & Wrapping */}
-        <span className="
-          block break-words             /* Handles wrapping */
-          font-blauer-nue             /* Custom font (ensure configured) */
-          text-2xl leading-tight        /* Mobile text size */
-          lg:text-4xl lg:leading-[44px] /* Desktop text size */
-          not-italic font-medium
-          text-transparent bg-clip-text /* Gradient text effect */
-          bg-gradient-to-t from-white to-[#e8af52]
-          w-full mb-2                   /* Use parent width, margin bottom */
-        ">
-          Experience the Perfect Blend of Heritage
-        </span>
-
-        {/* Body Text Span - Responsive Font & Wrapping */}
-        <span className="
-          block break-words             /* Handles wrapping */
-          font-blauer-nue             /* Custom font (ensure configured) */
-          text-sm leading-6             /* Mobile text size */
-          lg:text-base lg:leading-6     /* Desktop text size */
-          font-normal
-          text-transparent bg-clip-text /* Gradient text effect */
-          bg-gradient-to-r from-[#e8af52] to-[#ffffffe0] /* Different gradient */
-          w-full                        /* Use parent width */
-        ">
-          Experience the perfect fusion of tradition and modernity with the us. Add a touch of opulence to your home and let your décor tell a story of elegance. your home and let your décor tell a story of elegance.your home and let your décor tell a story of elegance.
-        </span>
+  {/* Image Block - Appears FIRST in source for Mobile layout */}
+  <div className="
+    relative w-full max-w-md      /* Mobile: Full width up to medium */
+    min-h-[250px] rounded-[12px] overflow-hidden
+    lg:w-auto lg:max-w-[589px]    /* Desktop: Auto width up to specific max */
+    lg:min-h-[365px] lg:flex-shrink-0 /* Desktop: Height & prevent shrinking */
+    lg:order-last                 /* Desktop: Ensure image block appears LAST */
+  ">
+    {/* Gradient border structure */}
+    <div className="bg-gradient-to-r from-[#E8AF52] via-yellow-700 to-[#225043] hover:bg-gradient-to-l rounded-[12px] p-[2px] text-white duration-300 hover:shadow-2xl hover:shadow-purple-600/30">
+      <div className='bg-black p-1 rounded-[10px]'>
+        <img
+          src="/banner/b6.png" /* Image for the second row */
+          alt="Heritage Image 2"
+          className="w-full h-full object-cover rounded-[9px] min-h-[240px] lg:min-h-[355px]"
+        />
       </div>
-
-      {/* Image Block - Responsive Size & Order */}
-      <div className="
-        relative w-full max-w-md        /* Mobile: Full width up to medium */
-        min-h-[250px] rounded-[12px] overflow-hidden
-        lg:w-auto lg:max-w-[589px]      /* Desktop: Auto width up to specific max */
-        lg:min-h-[365px] lg:flex-shrink-0 /* Desktop: Height & prevent shrinking */
-        lg:order-last                    /* Desktop: Ensure image block appears last */
-      ">
-        {/* Gradient border structure */}
-        <div className="bg-gradient-to-r from-[#E8AF52] via-yellow-700 to-[#225043] hover:bg-gradient-to-l rounded-[12px] p-[2px] text-white duration-300 hover:shadow-2xl hover:shadow-purple-600/30">
-          <div className='bg-black p-1 rounded-[10px]'>
-            <img
-              // NOTE: You had b5.png in the mobile example and b6.png in the desktop for Row 2.
-              // Make sure to use the correct image source for the row you intend. Let's assume b6.png is correct for Row 2.
-              src="/banner/b6.png"
-              alt="Heritage Image 2"
-              className="w-full h-full object-cover rounded-[9px] min-h-[240px] lg:min-h-[355px]"
-            />
-          </div>
-        </div>
-      </div>
-
     </div>
+  </div>
+
+  {/* Text Block - Appears SECOND in source for Mobile layout */}
+  <div className='
+    flex flex-col w-full max-w-md    /* Mobile: Full width up to medium, centered content */
+    items-center text-center
+    lg:max-w-[45%] lg:items-start   /* Desktop: Takes 45% width, align items left */
+    lg:text-left lg:mr-8           /* Desktop: Align text left, add right margin (space before image) */
+    lg:order-first                 /* Desktop: Ensure text block appears FIRST */
+  '>
+    {/* Title Span */}
+    <span className="
+      block break-words
+      font-blauer-nue
+      text-2xl leading-tight         /* Mobile text size */
+      lg:text-4xl lg:leading-[44px]  /* Desktop text size */
+      not-italic font-medium
+      text-transparent bg-clip-text  /* Gradient text effect */
+      bg-gradient-to-t from-white to-[#e8af52]
+      w-full mb-2
+    ">
+      Experience the Perfect Blend of Heritage
+    </span>
+
+    {/* Body Text Span */}
+    <span className="
+      block break-words
+      font-blauer-nue
+      text-sm leading-6              /* Mobile text size */
+      lg:text-base lg:leading-6      /* Desktop text size */
+      font-normal
+      text-transparent bg-clip-text  /* Gradient text effect */
+      bg-gradient-to-r from-[#e8af52] to-[#ffffffe0]
+      w-full
+    ">
+      Experience the perfect fusion of tradition and modernity with us. Add a touch of opulence to your home and let your décor tell a story of elegance. Your home and let your décor tell a story of elegance.
+    </span>
+  </div>
+</div>
 
         {/* Hero Section with another Ellipse */}
         <div className='relative'> {/* This parent needs to be relative for the absolute ellipse inside */}

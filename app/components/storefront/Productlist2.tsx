@@ -36,6 +36,7 @@ export default function ProductList({ subcategory, category , priceRange, isprem
   useEffect(() => {
     async function fetchProducts() {
       setLoading(true); // Set loading true at the start of fetch
+
       try {
         // Build query parameters dynamically
         const params = new URLSearchParams();
@@ -54,6 +55,7 @@ export default function ProductList({ subcategory, category , priceRange, isprem
           params.append('minPrice', priceRange.min.toString());
           params.append('maxPrice', priceRange.max.toString());
         }
+        console.log("ProductList - Props received:", { subcategory, category, priceRange, ispremium });
 
         // Construct the URL safely
         const apiUrl = `/api/products?${params.toString()}`;

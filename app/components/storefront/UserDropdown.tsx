@@ -55,8 +55,8 @@ export function UserDropdown({ email, name, userImage }: iAppProps) {
     </DropdownMenuTrigger>
     <DropdownMenuContent className="w-56 bg-transparent" align="end" forceMount>
       <DropdownMenuLabel className="flex flex-col space-y-1 font-blauer-nue">
-        <p className="text-sm font-medium leading-none">{name}</p>
-        <p className="text-xs leading-none text-muted-foreground">{email}</p>
+        <p className="text-sm font-medium text-yellow-600 leading-none">{name}</p>
+        <p className="text-xs leading-none text-yellow-700 text-muted-foreground">{email}</p>
       </DropdownMenuLabel>
       <DropdownMenuSeparator />
       <DropdownMenuItem asChild>

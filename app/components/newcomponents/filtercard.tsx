@@ -10,9 +10,10 @@ interface FilterCardProps {
     category: string;
   }>>;
   initialCategory: string; 
+  priceRange?: { min: number; max: number };
 }
 
-export const FilterCard: React.FC<FilterCardProps> = ({ setFilters , initialCategory }) => {
+export const FilterCard: React.FC<FilterCardProps> = ({ setFilters , initialCategory , priceRange }) => {
   const [childData, setChildData] = useState<number>(9999);
   const [selectedCategory, setSelectedCategory] =  useState<string>(initialCategory);
 
@@ -24,12 +25,15 @@ export const FilterCard: React.FC<FilterCardProps> = ({ setFilters , initialCate
     setSelectedCategory(category);
   };
 
-  const handleApply = () => {
-    setFilters({
-      price: { min: 999, max: childData },
-      category: selectedCategory,
-    });
-  };
+ 
+
+  // In filtercard.tsx
+    const handleApply = () => {
+        setFilters({
+          price: { min: priceRange?.min ?? 999, max: childData },
+          category: selectedCategory,
+        });
+      };
 
   return (
     <div className="bg-gradient-to-r from-[#E8AF52] via-yellow-700 to-[#225043] hover:bg-gradient-to-l inset-3 p-[2px] text-white duration-300 hover:shadow-2xl hover:shadow-purple-600/30 rounded-xl m-0 max-w-[305px] text-base font-light font-['Blauer_Nue']">

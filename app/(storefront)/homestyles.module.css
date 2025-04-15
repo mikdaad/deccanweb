@@ -18,7 +18,8 @@ background: radial-gradient(50% 50% at 50% 50%, rgba(233, 113, 2, 0.22) 0%, rgba
 
   .Ellipse_2_176_210 {
     border-radius: 967px;
-    background: radial-gradient(50% 50% at 50% 50%, rgba(243, 161, 9, 0.8) 0%, rgba(163, 176, 153, 0.00) 100%);
+    background: radial-gradient(50% 50% at 50% 50%, rgba(238, 115, 2, 0.80) 0%, rgba(163, 176, 153, 0.00) 100%);
+    filter: blur(150px);
     filter: blur(150px);
     opacity:0.30;
     flex-shrink: 0;

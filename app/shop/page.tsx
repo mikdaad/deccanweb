@@ -49,14 +49,15 @@ export default function Shop() {
 
       <main className="flex flex-col lg:flex-row gap-8 mt-4 min-h-screen">
         <div className="w-[412px] ml-4">
-          <FilterCard setFilters={setFilters} initialCategory={subcategory}/>
+          <FilterCard setFilters={setFilters} initialCategory={subcategory} priceRange={priceRange}/>
         </div>
         <section className="flex-1 mt-10 lg:mt-0 space-y-12">
           <ProductList
             subcategory={subcategory as Subcategory}
-            category={filters.category}
+            category={categoryParam}
             ispremium={ispremium}
             priceRange={priceRange}
+            
           />
         </section>
       </main>

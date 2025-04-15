@@ -7,7 +7,6 @@ import { ourFileRouter } from "./api/uploadthing/core";
 import { getServerSession } from "next-auth";
 import { options } from "../lib/auth";
 import Provider from "../components/provider";
-import HeaderNavigation from "./components/newcomponents/homeheader";
 
 const inter = Inter({ subsets: ["latin"] });
 

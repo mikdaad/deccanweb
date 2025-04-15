@@ -58,9 +58,9 @@ export async function POST(req: NextRequest) {
       merchantTransactionId: transactionId,
       merchantUserId: userId,
       amount: amount * 100, // Convert to paisa
-      redirectUrl: `https://localhost:3000/api/payment/callback/${transactionId}`,
+      redirectUrl: `https://deccanhome.vercel.app/api/payment/callback/${transactionId}`,
       redirectMode: "REDIRECT",
-      callbackUrl: `https://localhost:3000/api/payment/callback/${transactionId}`,
+      callbackUrl: `https://deccanhome.vercel.app/api/payment/callback/${transactionId}`,
       mobileNumber,
       paymentInstrument: {
         type: "PAY_PAGE",
