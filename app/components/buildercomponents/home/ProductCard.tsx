@@ -81,16 +81,17 @@ export function ProductCard({ item, className }: ProductCardProps) {
   <div className="absolute left-4 top-[180px] md:top-[220px] right-4 text-white z-10">
     {/* Name and Wishlist */}
     <div className="flex justify-between items-center mb-1">
-      <div className="text-sm md:text-md font-extrabold leading-snug font-['Blauer_Nue']">
+    <Link href={`/product/${item.id}`}> <div className="text-sm lg:text-[1rem] md:text-md font-extrabold leading-snug font-['Blauer_Nue']">
       {item.name.length > 40
         ? `${item.name.slice(0, 40)}...`
         : item.name}
       </div>
+      </Link>
       <Addtowishlistbtn onAddToWishlist={addProductToWishlist} />
     </div>
 
     {/* Description */}
-    <p className="hidden lg:block text-xs text-white/60 mt-2 font-['Blauer_Nue']">
+    <Link href={`/product/${item.id}`}><p className="hidden lg:block text-[0.7rem] text-white/60 mt-2 font-['Blauer_Nue']">
       {item.description.length > 90
         ? `${item.description.slice(0, 90)}...`
         : item.description}
@@ -100,27 +101,29 @@ export function ProductCard({ item, className }: ProductCardProps) {
         ? `${item.description.slice(0, 20)}...`
         : item.description}
     </p>
+    </Link>
 
     {/* Color, Price, and Add to Cart */}
     <div className="flex flex-row md:flex-row justify-between md:items-start mt-4 gap-4">
       <div>
         {/* Colors */}
-        <div className="flex gap-1">
+        <Link href={`/product/${item.id}`}> <div className="flex gap-1">
           <div className="w-3 h-3 lg:w-4 lg:h-4 bg-[#f9bf00] rounded-full" />
           <div className="w-3 h-3 lg:w-4 lg:h-4 bg-[#0a5d5d] rounded-full" />
           <div className="w-3 h-3 lg:w-4 lg:h-4 bg-[#db0000] rounded-full" />
           <div className="w-3 h-3 lg:w-4 lg:h-4 bg-gray-500 rounded-full" />
         </div>
+        </Link>
 
         {/* Price */}
-        <div className="flex items-center gap-1 mt-2 font-['Blauer_Nue']">
+        <Link href={`/product/${item.id}`}> <div className="flex items-center gap-1 mt-2 font-['Blauer_Nue']">
           <span className="text-[#778082]/60 line-through text-xs font-light">
             ₹{item.originalprice}
           </span>
           <span className="text-white text-sm font-semibold">
             ₹{item.discountprice}
           </span>
-        </div>
+        </div> </Link>
          {/* Cart Button */}
      
      <Newaddtocartbtn onAddToCart={addProductToShoppingCart}/>

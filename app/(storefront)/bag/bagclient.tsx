@@ -1,7 +1,7 @@
 // app/(routes)/bag/BagClient.tsx
 "use client";
 
-import { useState } from "react";
+import { useState ,useEffect} from "react";
 import PaymentPage from "../../components/paymentpage";
 import Footer from "@/app/components/newcomponents/footer";
 import CartProgress from "@/app/components/newcomponents/cartprogress";
@@ -12,6 +12,7 @@ import ShippingAddress from "@/app/components/newcomponents/finalshippingaddress
 import ProductCard from "@/app/components/newcomponents/summaryproductcard";
 import PaymentOptions from "@/app/components/newcomponents/paymentoptions";
 import OrderConfirmation from "@/app/components/newcomponents/thankyou";
+import Navigation from "@/app/components/newcomponents/navigation";
 
 interface Props {
   data: {
@@ -27,8 +28,15 @@ export default function BagClient({ data }: Props) {
   const [step, setStep] = useState(1);
   const [txnid, setTxnid] = useState("");
 
+    useEffect(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, []);
+    
+
   return (
     <div className="p-4 h-full font-glancyr">
+      <div className="lg:pl-44"> <Navigation/> </div>
+
      {step===1 && <PaymentPage
         originalprice={data.originalprice}
         totalPrice={data.totalPrice}

@@ -24,6 +24,10 @@ export default function Shop() {
     category: subcategory,
   });
   
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
+  
 
   // 🔁 Whenever filters change, update priceRange and URL
   useEffect(() => {

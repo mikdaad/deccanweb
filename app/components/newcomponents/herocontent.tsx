@@ -1,5 +1,6 @@
 import React from "react";
-import { Button } from "../ui/button"; // Assuming this is from ShadCN/UI or similar
+import { Button } from "../ui/button"; 
+import Link from "next/link";
 
 // Assuming 'Blauer Nue' font is configured as 'font-blauer-nue' in tailwind.config.js
 // If not, use font-['Blauer_Nue'] directly in the className.
@@ -59,7 +60,7 @@ const HeroContent: React.FC = () => {
       </p>
 
       {/* Button - Responsive width */}
-      <Button className="
+      <Link href="/shop"> <Button className="
         mt-4 md:mt-5               /* Margin top */
         rounded-[8px]
         w-full                      /* Mobile: Full width */
@@ -73,6 +74,7 @@ const HeroContent: React.FC = () => {
       ">
         Explore now
       </Button>
+      </Link>
 
     </div>
   );
