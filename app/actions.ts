@@ -231,10 +231,10 @@ export async function deleteProduct(formData: FormData) {
 
 
 export async function addItem(productId: string, quantity: number, color: string) {
-    const user = await db.user.current();
+  const user = await db.user.current();
 
   if (!user) {
-    return redirect("/");
+    return { error: "User not authenticated" };
   }
 
   let cart: Cart | null = await redis.get(`cart-${user.id}`);
@@ -253,33 +253,40 @@ export async function addItem(productId: string, quantity: number, color: string
   });
 
   if (!selectedProduct) {
-    throw new Error("No product with this id");
+    return { error: "No product with this id" };
   }
 
-  let myCart = {} as Cart;
+  // Ensure product has an image
+  const productImage = selectedProduct.images?.length > 0 ? selectedProduct.images[0] : "";
+
+  let myCart: Cart = {
+    userId: user.id,
+    items: [],
+  };
+
+  let message = "";
 
   if (!cart || !cart.items) {
-    myCart = {
-      userId: user.id,
-      items: [
-        {
-          id: selectedProduct.id,
-          name: selectedProduct.name,
-          originalprice: selectedProduct.originalprice,
-          discountprice:selectedProduct.discountprice,
-          imageString: selectedProduct.images[0],
-          quantity: quantity,
-          color: color,
-        },
-      ],
-    };
+    myCart.items = [
+      {
+        id: selectedProduct.id,
+        name: selectedProduct.name,
+        originalprice: selectedProduct.originalprice,
+        discountprice:selectedProduct.discountprice,
+        imageString: productImage,
+        quantity: quantity,
+        color: color,
+      },
+    ];
+    message = "Item added to cart";
   } else {
     let itemFound = false;
 
     myCart.items = cart.items.map((item) => {
       if (item.id === productId && item.color === color) {
         itemFound = true;
-        item.quantity += 1;
+        item.quantity += quantity; // Increment quantity instead of just setting to 1
+        message = "Cart quantity updated";
       }
       return item;
     });
@@ -290,16 +297,19 @@ export async function addItem(productId: string, quantity: number, color: string
         name: selectedProduct.name,
         originalprice: selectedProduct.originalprice,
         discountprice:selectedProduct.discountprice,
-        imageString: selectedProduct.images[0],
+        imageString: productImage,
         quantity: quantity,
         color: color,
       });
+      message = "Item added to cart";
     }
   }
 
-  await redis.set(`cart-${user.id}`, myCart);
+  await redis.set(`cart-${user.id}`, JSON.stringify(myCart)); // Store as string in Redis
 
   revalidatePath("/", "layout");
+
+  return { success: true, message: "Item added to Cart" };
 }
 
 
@@ -493,7 +503,7 @@ export async function addToWishlist(productId: string, quantity:number, color: s
   // Revalidate cache for updates
   revalidatePath("/", "layout");
 
-  return { success: true, message: "Item added to wishlist with updated size and color" };
+  return { success: true, message: "Item added to wishlist" };
 }
 
 

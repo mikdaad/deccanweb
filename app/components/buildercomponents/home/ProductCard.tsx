@@ -12,7 +12,7 @@ import {
 import { CldImage } from "next-cloudinary";
 import { Heart } from "lucide-react";
 import { addItem, addToWishlist } from "../../../actions";
-import { Addtocartbtn,Addtowishlistbtn } from "../../SubmitButtons";
+import { Newaddtocartbtn,Addtowishlistbtn ,Largeaddtocartbtn} from "../../SubmitButtons";
 
 
 interface ProductCardProps {
@@ -36,7 +36,20 @@ interface ProductCardProps {
 
 
 export function ProductCard({ item, className }: ProductCardProps) {
-  const addProductToShoppingCart = () => addItem(item.id, 1, "");
+  const addProductToShoppingCart = async () => {
+    try {
+      await addItem(item.id, 1, ""); // make sure this works
+      return {
+        success: true,
+        message: "Item added to cart",
+      };
+    } catch (err: any) {
+      return {
+        error: err?.message || "Error adding to cart",
+      };
+    }
+  };
+  
   const addProductToWishlist = () => addToWishlist(item.id, 1, "");
 
   return (
@@ -109,25 +122,15 @@ export function ProductCard({ item, className }: ProductCardProps) {
           </span>
         </div>
          {/* Cart Button */}
-      <button
-        onClick={addProductToShoppingCart}
-        className="block lg:hidden w-full flex items-center justify-center border border-[#e8af52] mt-2 rounded-lg hover:bg-[#e8af52]/10 transition p-2 px-8"
-      >
-        <span className="text-white text-sm font-medium font-['Blauer_Nue']">
-          Add to Cart
-        </span>
-      </button>
+     
+     <Newaddtocartbtn onAddToCart={addProductToShoppingCart}/>
+
+
       </div>
 
       {/* Cart Button */}
-      <button
-        onClick={addProductToShoppingCart}
-        className="hidden lg:block w-fit flex items-center justify-center border border-[#e8af52] rounded-lg hover:bg-[#e8af52]/10 transition p-2"
-      >
-        <span className="text-white text-sm font-medium font-['Blauer_Nue']">
-          Add to Cart
-        </span>
-      </button>
+      <Largeaddtocartbtn onAddToCart={addProductToShoppingCart}/>
+
     </div>
   </div>
 </article>

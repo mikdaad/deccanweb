@@ -49,6 +49,7 @@
     "react-day-picker": "^9.5.1",
     "react-dom": "^18",
     "react-hook-form": "^7.54.2",
+    "react-hot-toast": "^2.5.2",
     "react-remove-scroll": "^2.6.3",
     "react-select": "^5.10.0",
     "react-toastify": "^11.0.5",
