@@ -105,13 +105,14 @@ export default function ProductList({ subcategory, category , priceRange, isprem
     <div className="grid grid-cols-2  lg:grid-cols-4 gap-x-4 gap-y-4">
 
       {loading ? (
-        <div className="flex justify-center items-center ml-36">
-          <div className="flex flex-row gap-10 lg:gap-32 ml-20">
-            <div className="animate-spin  rounded-full h-10 w-10 border-t-4 border-white border-solid"></div>
-            <div className="animate-spin  rounded-full h-10 w-10 border-t-4 border-yellow-300 border-solid"></div>
-            <div className="animate-spin  rounded-full h-10 w-10 border-t-4 border-white border-solid"></div>
-            <div className="animate-spin  rounded-full h-10 w-10 border-t-4 border-yellow-300 border-solid"></div>
-          </div>
+        <div className="flex justify-center items-center ml-60">
+          <div className="flex items-center justify-center gap-6 ml-20">
+  <div className="h-6 w-6 rounded-full bg-gradient-to-br from-yellow-300 to-white animate-ping"></div>
+  <div className="h-6 w-6 rounded-full bg-gradient-to-br from-white to-yellow-300 animate-ping delay-200"></div>
+  <div className="h-6 w-6 rounded-full bg-gradient-to-br from-yellow-300 to-white animate-ping delay-400"></div>
+  <div className="h-6 w-6 rounded-full bg-gradient-to-br from-white to-yellow-300 animate-ping delay-600"></div>
+</div>
+
         </div>
       ) : products.length > 0 ? (
         products.map((product) => (

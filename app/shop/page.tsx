@@ -166,7 +166,8 @@ export default function Shop() {
                      {/* --- FilterCard Component --- */}
                      {/* Pass the new handler to FilterCard IF you modify FilterCard to accept it */}
                      {/* Otherwise, FilterCard's apply button will just call setFilters, and the sidebar won't auto-close */}
-                     <FilterCard
+                     <div className='sticky mt-4 inset-0'>
+                        <FilterCard
                          // Use the original setFilters prop if you CANNOT change FilterCard:
                          setFilters={setFilters}
                          // OR use the new handler IF you CAN change FilterCard slightly:
@@ -174,6 +175,7 @@ export default function Shop() {
                          initialCategory={filters.category} // Pass current filter state
                          priceRange={priceRange} // Pass current price range state
                      />
+                     </div>
                  </div>
 
                 {/* --- Product List Section (Adjust margin potentially) --- */}
