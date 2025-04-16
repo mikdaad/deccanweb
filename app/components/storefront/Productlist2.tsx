@@ -102,11 +102,11 @@ export default function ProductList({ subcategory, category , priceRange, isprem
   }, [subcategory, category, priceRange, ispremium]);
 
   return (
-    <div className="grid grid-cols-2  lg:grid-cols-4 gap-x-4 gap-y-2">
+    <div className="grid grid-cols-2  lg:grid-cols-4 gap-x-4 gap-y-4">
 
       {loading ? (
         <div className="flex justify-center items-center ml-36">
-          <div className="flex flex-row gap-10 lg:gap-32 ml-10">
+          <div className="flex flex-row gap-10 lg:gap-32 ml-20">
             <div className="animate-spin  rounded-full h-10 w-10 border-t-4 border-white border-solid"></div>
             <div className="animate-spin  rounded-full h-10 w-10 border-t-4 border-yellow-300 border-solid"></div>
             <div className="animate-spin  rounded-full h-10 w-10 border-t-4 border-white border-solid"></div>

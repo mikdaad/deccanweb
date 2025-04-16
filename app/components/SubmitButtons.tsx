@@ -124,12 +124,12 @@ export function Newaddtocartbtn({
         onClick={handleClick}
         disabled={loading}
         type="button"
-        className="block lg:hidden w-full flex items-center justify-center border border-[#e8af52] mt-2 rounded-lg hover:bg-[#e8af52]/10 transition p-2 px-8"
+        className="block lg:hidden w-full flex items-center justify-center border border-[#e8af52] mt-2 rounded-lg hover:bg-[#e8af52]/10 transition p-2 ml-[20%] px-2"
       >
         {loading ? (
           <Loader2 className="h-6 w-6 animate-spin text-white" />
         ) : (
-          <span className="text-white text-sm font-medium font-['Blauer_Nue']">
+          <span className="text-white text-xs font-medium font-['Blauer_Nue']">
             Add to Cart
           </span>
         )}
@@ -229,7 +229,7 @@ export function Addtowishlistbtn({ onAddToWishlist }: { onAddToWishlist: () => P
         onClick={handleClick}
         disabled={loading}
         type="button" // Prevents form submission
-      >
+      > 
         {loading ? (
           <>
             <Loader2 className=" p-2   h-12 w-12 text-red-600 animate-spin" />

@@ -62,7 +62,7 @@ const Navigation = ({ className }: NavigationProps) => {
           <img
             src="https://cdn.builder.io/api/v1/image/assets/9e14ec760a13409cba0be5c570ba1763/77594f1921d467c02b24fcbef84db02d2430036a?placeholderIfAbsent=true"
             alt="Logo"
-            className="w-[160px] object-contain"
+            className="w-[130px] lg:w-[160px] object-contain"
           />
         </Link>
 

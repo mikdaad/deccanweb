@@ -56,7 +56,7 @@ export function ProductCard({ item, className }: ProductCardProps) {
     <div className="bg-gradient-to-r from-[#E8AF52] via-yellow-700 to-[#225043] hover:bg-gradient-to-l p-[1px] rounded-2xl">
      <article
   className={cn(
-    "w-full h-[400px] lg:max-w-[470px] md:h-[433px]  bg-[#242424] relative rounded-2xl overflow-hidden shadow-md p-2",
+    "w-full h-[350px] lg:h-[400px] lg:max-w-[470px] md:h-[433px]  bg-[#242424] relative rounded-2xl overflow-hidden shadow-md p-2",
     className
   )}
 >
@@ -72,18 +72,29 @@ export function ProductCard({ item, className }: ProductCardProps) {
       height={330}
       crop="fill"
       gravity="center"
-      className="w-full h-[230px] md:h-[330px] object-contain pb-20 md:pb-32 rounded-xl"
+      className="hidden lg:block w-full h-[230px] md:h-[330px] object-contain pb-20 md:pb-32 rounded-2xl"
+      loading="lazy"
+    />
+
+<CldImage
+      src={item.images[0]}
+      alt={item.name}
+      width={380}
+      height={330}
+      crop="fill"
+      gravity="center"
+      className="block lg:hidden w-full h-[330px] md:h-[330px] object-contain pb-48 md:pb-32 rounded-2xl"
       loading="lazy"
     />
   </Link>
 
   {/* Details */}
-  <div className="absolute left-4 top-[180px] md:top-[220px] right-4 text-white z-10">
+  <div className="absolute left-4 top-[150px] md:top-[220px] right-4 text-white z-10">
     {/* Name and Wishlist */}
     <div className="flex justify-between items-center mb-1">
     <Link href={`/product/${item.id}`}> <div className="text-sm lg:text-[1rem] md:text-md font-extrabold leading-snug font-['Blauer_Nue']">
-      {item.name.length > 40
-        ? `${item.name.slice(0, 40)}...`
+      {item.name.length > 25
+        ? `${item.name.slice(0, 25)}...`
         : item.name}
       </div>
       </Link>
@@ -97,7 +108,7 @@ export function ProductCard({ item, className }: ProductCardProps) {
         : item.description}
     </p>
     <p className="block lg:hidden text-xs text-white/60 mt-2 font-['Blauer_Nue']">
-      {item.description.length > 20
+      {item.description.length > 15
         ? `${item.description.slice(0, 20)}...`
         : item.description}
     </p>
@@ -125,6 +136,7 @@ export function ProductCard({ item, className }: ProductCardProps) {
           </span>
         </div> </Link>
          {/* Cart Button */}
+     
      
      <Newaddtocartbtn onAddToCart={addProductToShoppingCart}/>
 

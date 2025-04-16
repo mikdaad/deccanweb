@@ -43,10 +43,12 @@ function App() {
 
           {/* Background Ellipses - Placed first, low z-index */}
           {/* These are now direct children of the clipping container */}
-          <div className={`${styles.Ellipse_2_176_209} absolute z-0 right-3/4 bottom-[5%] overflow-hidden pointer-events-none`}></div> {/* Adjusted position slightly, added pointer-events-none */}
-          <div className={`${styles.Ellipse_2_176_210} absolute z-0 bottom-1/4 left-3/4 overflow-hidden pointer-events-none`}></div> {/* Adjusted position slightly, added pointer-events-none */}
+          <div className={`${styles.Ellipse_2_176_209} absolute hidden lg:block z-0 right-3/4 bottom-[5%] overflow-hidden pointer-events-none`}></div> {/* Adjusted position slightly, added pointer-events-none */}
+          <div className={`${styles.Ellipse_2_176_210} absolute  hidden lg:block z-0 bottom-1/4 left-3/4 overflow-hidden pointer-events-none`}></div> {/* Adjusted position slightly, added pointer-events-none */}
           {/* NOTE: Adjusted ellipse positions (top-0, bottom-1/4) as examples, fine-tune based on desired visual placement relative to the clipping container */}
 
+          <div className={`${styles.Ellipse_2_176_209} absolute block lg:hidden z-0 right-0 bottom-[5%] overflow-hidden pointer-events-none`}></div> {/* Adjusted position slightly, added pointer-events-none */}
+          <div className={`${styles.Ellipse_2_176_210} absolute z-0  block lg:hidden bottom-0 left-3/4 overflow-hidden pointer-events-none`}></div> 
 
           {/* Content Row 1: Main Text and SVG */}
           {/* Added relative and z-10 to ensure this content is above the z-0 ellipses */}
@@ -59,7 +61,7 @@ function App() {
            
            <div className='flex flex-row '>
             <div className='flex flex-col'><span className="
-  inline-block  w-[240px] lg:w-[640px]  mt-[30px]  lg:mt-[85px] font-['Serena'] text-[25px]  lg:text-[44px]  not-italic  font-normal leading-[121.6%] bg-gradient-to-t  from-white
+  inline-block  w-[280px] lg:w-[640px]  mt-[30px]  lg:mt-[85px] font-['Serena'] text-[25px]  lg:text-[44px]  not-italic  font-normal leading-[121.6%] bg-gradient-to-t  from-white
   to-[#e8af52]
   bg-clip-text     text-transparent  whitespace-normal overflow-visible      break-words           ">
   Your Most Modern Home With Our Products
@@ -86,7 +88,7 @@ sophistication and warmth to your home
   </div>
 </div> 
 <SocialIconsBar
-         iconClassName="w-[85px] h-[233px] mt-8 lg:mt-10 lg:ml-28 lg:mt-0 lg:w-[105px] lg:h-[333px]"
+         iconClassName="absolute  top-12 lg:top-20 right-4  lg:right-28 w-[85px] h-[233px] mt-8 lg:mt-10 lg:ml-28 lg:mt-0 lg:w-[105px] lg:h-[333px]"
       /> </div>
 <div className='block lg:hidden mr-5 mt-3'><StatsCard /></div>\
 
