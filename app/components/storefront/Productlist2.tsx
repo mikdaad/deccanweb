@@ -107,7 +107,7 @@ export default function ProductList({ subcategory, category , priceRange, isprem
       {loading ? (
         <div className="flex justify-center items-center ml-60">
           <div className="flex items-center justify-center gap-6 ml-20">
-  <div className="h-6 w-6 rounded-full bg-gradient-to-br from-yellow-300 to-white animate-ping"></div>
+  <div className="h-6 w-6 rounded-full bg-gradient-to-br from-yellow-300 to-white animate-ping"> </div>
   <div className="h-6 w-6 rounded-full bg-gradient-to-br from-white to-yellow-300 animate-ping delay-200"></div>
   <div className="h-6 w-6 rounded-full bg-gradient-to-br from-yellow-300 to-white animate-ping delay-400"></div>
   <div className="h-6 w-6 rounded-full bg-gradient-to-br from-white to-yellow-300 animate-ping delay-600"></div>

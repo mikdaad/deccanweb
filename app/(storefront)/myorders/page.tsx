@@ -131,7 +131,7 @@ export default async function OrdersPage() {
                 <TableHead></TableHead> {/* Image col */}
                 <TableHead>Payment</TableHead>
                 <TableHead>Color</TableHead>
-                <TableHead>Size</TableHead>
+                <TableHead>Quantity</TableHead>
                 <TableHead className="text-right">Amount</TableHead>
                 <TableHead>Contact No</TableHead>
                 <TableHead>Deliverable Address</TableHead>
@@ -139,7 +139,7 @@ export default async function OrdersPage() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {data.map((item) => (
+              {data.map((item :any) => (
                 <TableRow key={item.id}>
                   <TableCell className="font-medium">{item.itemname ?? 'N/A'}</TableCell>
                    <TableCell>
@@ -200,9 +200,9 @@ export default async function OrdersPage() {
                     <span className="font-medium">Status:</span> {item.status ?? 'Pending'}
                   </div>
                   {item.itemcolor && <div><span className="font-medium">Color:</span> {item.itemcolor}</div>}
-                  {item.itemquantity && <div><span className="font-medium">Size:</span> {item.itemquantity}</div>}
+                  {item.itemquantity && <div><span className="font-medium">Quantity:</span> {item.itemquantity}</div>}
                    <div>
-                    <span className="font-medium">Date:</span> {new Intl.DateTimeFormat("en-GB").format(item.createdAt)}
+                    <span className="font-medium">Order Date:</span> {new Intl.DateTimeFormat("en-GB").format(item.createdAt)}
                   </div>
                 </div>
 

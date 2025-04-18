@@ -67,6 +67,7 @@ const Navigation = ({ className }: NavigationProps) => {
         </Link>
 
         {/* Hamburger Menu for Mobile */}
+      
         <button
           className="lg:hidden"
           onClick={() => setMenuOpen((prev) => !prev)}
@@ -78,7 +79,7 @@ const Navigation = ({ className }: NavigationProps) => {
       {/* Nav Links */}
       <div
   className={cn(
-    "flex-col lg:flex lg:flex-row lg:items-center gap-11 mt-4 lg:mt-0 w-full lg:w-auto transition-all duration-300",
+    "flex-col lg:flex lg:flex-row lg:items-center gap-4 lg:gap-16 mt-4 lg:ml-4 lg:mt-0 w-full lg:w-auto transition-all duration-300",
     menuOpen ? "flex bg-black p-4 z-50 absolute top-[70px] left-0" : "hidden lg:flex"
   )}
 >
@@ -88,9 +89,10 @@ const Navigation = ({ className }: NavigationProps) => {
             key={link.href}
             href={link.href}
             className={cn(
-              "rounded-md px-3 py-2 text-sm transition font-blauer-nue font-medium",
+              "rounded-md px-3 py-2 text-sm transition font-blauer-nue font-light",
               pathname === link.href
-                ? "border border-yellow-400 bg-white/10 text-white shadow-xl"
+                ?"rounded-[7px] border border-[#F9BF00] border-[0.5px] bg-gradient-to-b from-white/10 to-black/0  [background-position:0.28%_140.18%]  backdrop-blur-[27px] text-white shadow-xl"
+
                 : "hover:text-yellow-300"
             )}
             onClick={() => setMenuOpen(false)} // close menu on click
@@ -100,7 +102,7 @@ const Navigation = ({ className }: NavigationProps) => {
         ))}
 
         {/* Search */}
-        <div className="flex items-center gap-11">
+        <div className="flex items-center gap-16">
           <button
             onClick={() => setSearchOpen((prev) => !prev)}
             aria-label="Search"

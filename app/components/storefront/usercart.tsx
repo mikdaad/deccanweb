@@ -31,7 +31,8 @@ const UserCart = () => {
   if (loading) {
     return (
       <div className="flex justify-center items-center">
-        <div className="animate-spin rounded-full h-10 w-10 border-t-4 border-blue-500 border-solid"></div>
+         <div className="h-6 w-6 rounded-full bg-gradient-to-br from-yellow-300 to-white animate-ping"> </div>
+      
       </div>
     );
   }

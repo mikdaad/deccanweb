@@ -22,7 +22,7 @@ const StatItem: React.FC<StatItemProps> = ({ value, label, className = "" }) => 
       {value}
     </span>
     {/* Responsive font size for the label */}
-    <span className="font-light text-[0.6rem] lg:text-sm">{label}</span>
+    <span className="font-thin text-[0.6rem] lg:text-sm">{label}</span>
   </div>
 );
 
@@ -50,7 +50,7 @@ const StatsCard: React.FC = () => {
           {/* Responsive Padding: Smaller on mobile, larger on lg+ */}
           {/* Responsive Gap: Smaller on mobile, larger on lg+ */}
           {/* Layout is always flex-row */}
-          <div className="flex w-full flex-row items-center justify-around gap-3 px-3 py-4 lg:gap-10 lg:px-[37px] lg:py-[46px] rounded-[22px]">
+          <div className="flex w-full flex-row items-center justify-around gap-3 px-3 py-4 lg:gap-4 lg:px-[37px] lg:py-[46px] rounded-[22px] font-blauer-nue">
             {/* Map over stats data */}
             {statsData.map((stat, index) => (
               <React.Fragment key={stat.label}>
