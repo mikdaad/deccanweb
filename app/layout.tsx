@@ -12,7 +12,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Deccan",
-  description: "A fashion-forward brand dedicated to redefining modern style",
+  description: "Experience the Perfect Blend of Heritage and Modernity",
 };
 
 export default async function RootLayout({
