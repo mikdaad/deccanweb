@@ -49,7 +49,7 @@ export function Banner() {
 
   return (
     // Responsive Grid & Margin
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 md:ml-[7%] my-5">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 md:ml-[7%] my-5 font-blauer-nue" >
       {banners.map((banner) => (
         <Link key={banner.id} href={`/shop${banner.link}`} className="block group"> {/* Added group class */}
 
