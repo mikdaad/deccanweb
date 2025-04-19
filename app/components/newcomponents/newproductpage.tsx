@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from "react";
+import React, { useState ,useEffect } from "react";
 import ProductDescription from "./productcarddescription";
 import ProductDetails from "./productdetails";
 import ProductGallery from "./productgallery";
@@ -7,6 +7,11 @@ import { Breadcrumb } from "../ui/breadcrumb";
 import Footer from "./footer";
 import ProductList from "../storefront/Productlist2";
 import HeaderNavigation from "./homeheader";
+
+useEffect(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, []);
+    
 
 export default function NewProductPage ({ data }: { data: any })  {
 
