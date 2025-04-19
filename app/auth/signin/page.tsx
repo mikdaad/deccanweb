@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState,useEffect} from 'react';
 import { signIn } from 'next-auth/react'; // Import signIn
 import Image from 'next/image';
 import { Loader2 } from 'lucide-react'; // Or your preferred loading icon
@@ -33,7 +33,7 @@ const PlaceholderSignupForm: React.FC<SignupFormProps> = ({
   inputClasses, buttonPrimaryClasses, buttonSecondaryClasses
 }) => {
   return (
-    <div className="w-full max-w-md mx-auto space-y-6">
+    <div className="w-full max-w-md mx-auto space-y-6 font-blauer-nue">
       <h1 className="text-4xl md:text-5xl font-medium text-center md:text-left">
         Create Your Account
       </h1>
@@ -189,6 +189,10 @@ const Index = () => {
     signIn("google", { callbackUrl: `${window.location.origin}/` });
   };
 
+  useEffect(() => {
+      window.scrollTo({ top: 350, behavior: 'smooth' });
+    }, []);
+
   // Shared input styling
   const inputClasses = "w-full bg-white/10 rounded-xl px-6 py-4 text-white placeholder:text-white/40 text-lg font-light focus:outline-none focus:ring-1 focus:ring-yellow-500/50";
   // Shared button styling
@@ -196,7 +200,7 @@ const Index = () => {
   const buttonSecondaryClasses = "w-full px-6 py-4 bg-white/10 rounded-xl text-white text-lg font-normal hover:bg-white/20 transition-colors duration-200 flex items-center justify-center gap-2.5 disabled:opacity-50 disabled:cursor-not-allowed";
 
   return (
-    <main className="min-h-screen flex items-center justify-center bg-gradient-to-bl from-[#101318] to-[#1a1c21] p-4 sm:p-8 md:p-12 lg:p-20"> {/* Added responsive padding */}
+    <main className="min-h-screen flex items-center justify-center bg-gradient-to-bl from-[#101318] to-[#1a1c21] p-4 sm:p-8 md:p-12 lg:p-56 font-blauer-nue" > {/* Added responsive padding */}
       {/* Outer Border Container */}
       <div className="w-full max-w-7xl border border-[#868686] rounded-[32px] lg:p-12">
         {/* Inner Content Container */}
