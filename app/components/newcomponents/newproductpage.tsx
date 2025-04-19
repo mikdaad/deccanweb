@@ -8,12 +8,14 @@ import Footer from "./footer";
 import ProductList from "../storefront/Productlist2";
 import HeaderNavigation from "./homeheader";
 
-useEffect(() => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }, []);
+
     
 
 export default function NewProductPage ({ data }: { data: any })  {
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
 
 
   const {
