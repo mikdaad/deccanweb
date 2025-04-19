@@ -21,7 +21,7 @@ const CartProgress: React.FC<CartProgressProps> = ({ currentStep }) => {
 
   return (
     // Outer container: Vertical stack, responsive margin/padding, max-width
-    <div className="flex flex-col w-full max-w-4xl mx-auto items-start gap-4 md:gap-6 my-8 md:my-12 px-4">
+    <div className="flex flex-col w-full max-w-4xl mx-auto items-start gap-4 md:gap-6 my-8 md:my-12 px-4 font-blauer-nue">
       {/* Shopping Cart Title: Responsive text */}
       <div className="text-white text-lg sm:text-xl md:text-2xl font-semibold leading-tight tracking-wide">
         Shopping Cart

@@ -72,7 +72,7 @@ const PaymentOptions: React.FC<PaymentOptionsProps> = ({
 
 
   // --- Reusable Styles ---
-  const detailsBaseStyle = "flex flex-col gap-4 flex-grow";
+  const detailsBaseStyle = "flex flex-col gap-4 flex-grow font-blauer-nue";
   const descriptionBaseStyle = "flex items-start gap-3 sm:gap-4 text-white";
   const textBlockStyle = "flex flex-col";
   const titleStyle = "text-sm sm:text-base font-medium";

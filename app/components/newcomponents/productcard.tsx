@@ -12,7 +12,7 @@ export default function ProductCard({ cartItems }: ProductCardprops) {
       {cartItems.map((item) => (
         <div key={item.id}>
           {/* Main Card Container - Mobile first padding, increase on larger screens */}
-          <div className="border border-[color:var(--Button-color,#E8AF52)] shadow-[0px_1px_0px_0px_rgba(255,255,255,0.08)_inset] bg-[rgba(255,255,255,0.02)] overflow-hidden w-full p-3 sm:p-4 md:p-6 rounded-lg md:rounded-2xl border-solid">
+          <div className="border border-[color:var(--Button-color,#E8AF52)] shadow-[0px_1px_0px_0px_rgba(255,255,255,0.08)_inset] bg-[rgba(255,255,255,0.02)] overflow-hidden w-full p-3 sm:p-4 md:p-6 rounded-lg md:rounded-2xl border-solid font-blauer-nue">
             {/* Main Flex Container - Always row, adjust gap and alignment */}
             <div className="flex flex-row gap-3 sm:gap-4 items-start">
 
@@ -26,7 +26,7 @@ export default function ProductCard({ cartItems }: ProductCardprops) {
                   />
                  {/* "Few left" Badge - Smaller text/padding */}
                  <div className="bg-red-600 text-white self-center w-auto mt-2 px-1.5 py-0.5 rounded text-[10px] sm:text-xs text-center uppercase">
-                   only Few left
+                 only Few left
                  </div>
                </div>
 

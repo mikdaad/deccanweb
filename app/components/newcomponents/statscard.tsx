@@ -18,7 +18,7 @@ const StatItem: React.FC<StatItemProps> = ({ value, label, className = "" }) => 
   // Kept text-center for alignment, removed width constraints for flexbox
   <div className={`my-auto text-center ${className}`}>
     {/* Responsive font size for the main value */}
-    <span className="block text-xl lg:text-3xl font-medium"> {/* Example sizes */}
+    <span className="block text-xl lg:text-2xl font-light"> {/* Example sizes */}
       {value}
     </span>
     {/* Responsive font size for the label */}
@@ -45,7 +45,7 @@ const StatsCard: React.FC = () => {
       >
         <div
           // Removed explicit font sizes here, let StatItem handle them
-          className="max-w-full text-white font-normal text-center leading-tight rounded-[22px] backdrop-blur-[27px] bg-[linear-gradient(180deg,rgba(255,255,255,0.10)_0.28%,rgba(0,0,0,0.00)_140.18%)]"
+          className="max-w-full text-white font-normal text-center leading-tight lg:py-[0px]   py-[10px] rounded-[22px] backdrop-blur-[27px] bg-[linear-gradient(180deg,rgba(255,255,255,0.10)_0.28%,rgba(0,0,0,0.00)_140.18%)]"
         >
           {/* Responsive Padding: Smaller on mobile, larger on lg+ */}
           {/* Responsive Gap: Smaller on mobile, larger on lg+ */}

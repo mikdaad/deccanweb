@@ -37,7 +37,7 @@ export default function OrderSummaryItems({ cartItems }: OrderSummaryItemsProps)
         // Item Container: Responsive padding, border, background
         <div
           key={item.id} // Key prop is essential for lists
-          className="border border-[color:var(--Button-color,#E8AF52)]/50 bg-white/[.02] w-full p-3 sm:p-4 rounded-lg md:rounded-xl"
+          className="border border-[color:var(--Button-color,#E8AF52)]/50 bg-white/[.02] w-full p-3 sm:p-4 rounded-lg md:rounded-xl font-blauer-nue"
         >
           {/* Item Inner Layout: stacks on xs, row on sm+ */}
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">

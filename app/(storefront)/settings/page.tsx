@@ -33,7 +33,7 @@ export default function UpdateUserForm() {
   const [loading, setLoading] = useState(false);
 
   const handleLogout = async () => {
-    await signOut({ callbackUrl: "/getstarted" }); // Redirect to home or login page after logout
+    await signOut({ callbackUrl: "/" }); // Redirect to home or login page after logout
   };
 
   useEffect(() => {
@@ -93,7 +93,7 @@ export default function UpdateUserForm() {
 
   return (
     <div>
-    <form onSubmit={handleSubmit(onSubmit)} className="max-w-xl mx-auto font-glancyr">
+    <form onSubmit={handleSubmit(onSubmit)} className="max-w-xl mx-auto font-blauer-nue">
       
    
       <div className="flex items-center gap-x-4">
@@ -167,7 +167,7 @@ export default function UpdateUserForm() {
         e.preventDefault();
         handleLogout();
       }}
-      className="flex flex-col items-center p-4 bg-gray-100 rounded-md"
+      className="flex flex-col items-center p-4 bg-black rounded-md"
     >
       <Button type="submit"  className="max-w-xl mx-auto w-full gap-x-4">
      

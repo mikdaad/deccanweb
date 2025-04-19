@@ -67,6 +67,20 @@ const Navigation = ({ className }: NavigationProps) => {
         </Link>
 
         {/* Hamburger Menu for Mobile */}
+
+        <div className="block lg:hidden flex flex-row items-center gap-6">
+
+        <Link href="/bag" className="mt-1">
+            <svg width="30" height="30" viewBox="0 0 36 36" fill="none">
+              <path d="M13.6362 34C14.4395 34 15.0907 33.3177 15.0907 32.4762C15.0907 31.6346 14.4395 30.9524 13.6362 30.9524C12.8329 30.9524 12.1816 31.6346 12.1816 32.4762C12.1816 33.3177 12.8329 34 13.6362 34Z" stroke="white" strokeWidth="3" />
+              <path d="M29.6362 34C30.4395 34 31.0907 33.3177 31.0907 32.4762C31.0907 31.6346 30.4395 30.9524 29.6362 30.9524C28.8329 30.9524 28.1816 31.6346 28.1816 32.4762C28.1816 33.3177 28.8329 34 29.6362 34Z" stroke="white" strokeWidth="3" />
+              <path d="M2 2H7.81818L11.7164 22.4038C11.8494 23.1054 12.2137 23.7356 12.7455 24.1841C13.2774 24.6326 13.9428 24.8708 14.6255 24.8571H28.7636C29.4463 24.8708 30.1117 24.6326 30.6436 24.1841C31.1754 23.7356 31.5397 23.1054 31.6727 22.4038L34 9.61905H9.27273" stroke="white" strokeWidth="3" />
+            </svg>
+          </Link>
+
+          {/* Cart */}
+          <UserCart />
+
       
         <button
           className="lg:hidden"
@@ -74,6 +88,7 @@ const Navigation = ({ className }: NavigationProps) => {
         >
           {menuOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
         </button>
+        </div>
       </div>
 
       {/* Nav Links */}
@@ -89,7 +104,7 @@ const Navigation = ({ className }: NavigationProps) => {
             key={link.href}
             href={link.href}
             className={cn(
-              "rounded-md px-3 py-2 text-sm transition font-blauer-nue font-light",
+              "rounded-md px-3 py-2 text-sm transition font-blauer-nue ",
               pathname === link.href
                 ?"rounded-[7px] border border-[#F9BF00] border-[0.5px] bg-gradient-to-b from-white/10 to-black/0  [background-position:0.28%_140.18%]  backdrop-blur-[27px] text-white shadow-xl"
 

@@ -20,6 +20,7 @@
   city: string;
   postalCode: string;
   phoneno: string;
+  
  
  };
 
@@ -50,6 +51,7 @@
         setValue("postalCode", data.postalCode || "");
     
         setValue("phoneno", data.phoneno || "");
+      
      
       } catch (error) {
         console.error("Error fetching shipping data:", error);
@@ -80,7 +82,7 @@
   };
 
   return (
-    <div className="justify-center items-stretch border border-[color:var(--Button-color,#E8AF52)] shadow-[0px_1px_0px_0px_rgba(255,255,255,0.08)_inset] bg-[rgba(255,255,255,0.02)] flex w-full flex-col overflow-hidden text-sm text-[rgba(97,97,97,1)] font-light mx-auto px-[26px] py-[25px] rounded-2xl border-solid max-md:max-w-full max-md:mt-[22px] max-md:px-5">
+    <div className="justify-center items-stretch border border-[color:var(--Button-color,#E8AF52)] shadow-[0px_1px_0px_0px_rgba(255,255,255,0.08)_inset] bg-[rgba(255,255,255,0.02)] flex w-full flex-col overflow-hidden text-sm text-[rgba(97,97,97,1)] font-light mx-auto px-[26px] py-[25px] rounded-2xl border-solid max-md:max-w-full max-md:mt-[22px] max-md:px-5 font-blauer-nue">
     <div className="flex items-center gap-x-4 mb-4">
       
       <h1 className="text-white text-xl font-medium leading-none tracking-[-0.9px]">
@@ -158,32 +160,31 @@
       </div>
       <div className="flex flex-col mt-3">
         
-        <select
-          id="street"
-          {...register("street", { required: "Country is required" })}
-          className="bg-[rgba(255,255,255,0.02)] border px-[26px] py-3 rounded-lg border-[rgba(137,137,137,1)] border-solid text-white"
-        >
-          <option value="Country"disabled  className="text-gray-400">
-            Country/Region
-          </option>
-          <option value="india" className="text-black">
-            India
-          </option>
-          <option value="usa" className="text-black">
-            USA
-          </option>
-          <option value="uk" className="text-black">
-            UK
-          </option>
-          <option value="canada" className="text-black">
-            Canada
-          </option>
+      <select
+  id="street"
+  {...register("street", { required: "Country is required" })}
+  className="bg-[rgba(255,255,255,0.02)] border px-[26px] py-3 rounded-lg border-[rgba(137,137,137,1)] border-solid text-white"
+>
+  <option value="" disabled selected className="text-gray-400">
+    Country/Region
+  </option>
+  <option value="india" className="text-black">
+    India
+  </option>
+  <option value="usa" className="text-black">
+    USA
+  </option>
+  <option value="uk" className="text-black">
+    UK
+  </option>
+  <option value="canada" className="text-black">
+    Canada
+  </option>
+  <option value="australia" className="text-black">
+    Australia
+  </option>
+</select>
 
-          <option value="australia" className="text-black">
-            Australia
-          </option>
-          
-        </select>
         {errors.street && <p className="text-red-500 text-xs mt-1">{errors.street.message}</p>}
       </div>
       <div className="flex items-center gap-1.5 text-white leading-none ml-[18px] mt-3 max-md:ml-2.5">

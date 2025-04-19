@@ -60,7 +60,7 @@ const ShippingAddress: React.FC<ShippingAddressProps> = ({step,setstep} ) => {
   };
 
   return (
-    <div className="justify-center border border-[color:var(--Button-color,#E8AF52)] shadow-[0px_1px_0px_0px_rgba(255,255,255,0.08)_inset] bg-[rgba(255,255,255,0.02)] flex w-full flex-col overflow-hidden mx-auto pt-[17px] pb-[47px] px-[25px] rounded-2xl border-solid max-md:max-w-full max-md:mt-[22px] max-md:pl-5">
+    <div className="justify-center border border-[color:var(--Button-color,#E8AF52)] shadow-[0px_1px_0px_0px_rgba(255,255,255,0.08)_inset] bg-[rgba(255,255,255,0.02)] flex w-full flex-col overflow-hidden mx-auto pt-[17px] pb-[47px] px-[25px] rounded-2xl border-solid max-md:max-w-full max-md:mt-[22px] max-md:pl-5 font-blauer-nue">
       <div className="self-stretch max-md:max-w-full">
         <div className="gap-5 flex max-md:flex-col max-md:items-stretch">
           <div className="w-[61%] max-md:w-full max-md:ml-0">

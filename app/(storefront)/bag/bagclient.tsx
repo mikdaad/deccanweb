@@ -50,7 +50,7 @@ export default function BagClient({ data }: Props) {
       <div>
         <div className="w-[712px] h-[712px] left-[220px] top-[128px] absolute opacity-10 bg-[radial-gradient(ellipse_50%_50%_at_50%_50%,_#F9BF00_0%,_rgba(252,_232,_3,_0)_100%)] blur-3xl z-0"></div>
 
-        <div className=" z-10 p-4 h-full font-glancyr">
+        <div className=" z-10 p-4 h-full font-blauer-nue">
           <CartProgress currentStep={2} />
 
           <div className="text-white text-2xl font-semibold leading-none tracking-[0.72px] ml-2.5 mt-[50px] max-md:mt-10">

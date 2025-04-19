@@ -47,8 +47,9 @@ function App() {
           <div className={`${styles.Ellipse_2_176_210} absolute  hidden lg:block z-0 bottom-1/4 left-3/4 overflow-hidden pointer-events-none`}></div> {/* Adjusted position slightly, added pointer-events-none */}
           {/* NOTE: Adjusted ellipse positions (top-0, bottom-1/4) as examples, fine-tune based on desired visual placement relative to the clipping container */}
 
-          <div className={`${styles.Ellipse_2_176_209} absolute block lg:hidden z-0 right-0 bottom-[5%] overflow-hidden pointer-events-none`}></div> {/* Adjusted position slightly, added pointer-events-none */}
-          <div className={`${styles.Ellipse_2_176_210} absolute z-0  block lg:hidden bottom-0 left-3/4 overflow-hidden pointer-events-none`}></div> 
+          <div className={`${styles.Ellipse_2_176_209} absolute block lg:hidden z-0 left-0 bottom-[1%] overflow-hidden pointer-events-none`}></div> {/* Adjusted position slightly, added pointer-events-none */}
+
+         <div className={`${styles.Ellipse_2_176_210} absolute z-0  block lg:hidden bottom-0 left-3/4 overflow-hidden pointer-events-none`}></div>  
 
           {/* Content Row 1: Main Text and SVG */}
           {/* Added relative and z-10 to ensure this content is above the z-0 ellipses */}
