@@ -52,7 +52,7 @@ const Navigation = ({ className }: NavigationProps) => {
   return (
     <nav
       className={cn(
-        "w-full flex flex-col lg:flex-row items-start lg:items-center lg:gap-[40px_100px] pt-4 text-white uppercase font-blauer-nue",
+        "w-full flex flex-col lg:flex-row items-start lg:items-center lg:gap-[40px_100px]  text-white uppercase font-blauer-nue lg:mt-6",
         className
       )}
     >
